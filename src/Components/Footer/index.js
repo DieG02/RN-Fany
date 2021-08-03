@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     backgroundColor: MAIN,
+    // height: 120,
+    justifyContent: 'flex-end',
   }
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Dimensions } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
@@ -11,7 +11,6 @@ import Footer from './src/Components/Footer'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
-const { width, height } = Dimensions.get('window');
 
 function MyTabBar() {
   return (
@@ -32,7 +31,7 @@ function MyTabBar() {
 function App () {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -41,15 +40,14 @@ function App () {
           <Stack.Screen name='MyTabBar' component={MyTabBar} />
           <Stack.Screen name='Song' component={Song} />
         </Stack.Navigator>
-      </View>
+      </SafeAreaView>
     </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: width,
-    height: height,
+    flex: 1,
     backgroundColor: "#ff0000"
   }
 

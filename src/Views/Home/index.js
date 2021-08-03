@@ -7,11 +7,18 @@ import {
 } from 'react-native'
 
 
-function Home() {
+function Home({ navigation }) {
+  function FocusAwareStatusBar(props) {
+    return navigation.isFocused && <StatusBar {...props} />;
+  }
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'dark-content'} />
+      <FocusAwareStatusBar
+        translucent={true}
+        backgroundColor='transparent'
+        barStyle='dark-content'
+      />
       <Text style={{ color: "#f00" }}>
         Home Screen
       </Text>

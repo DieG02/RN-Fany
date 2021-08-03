@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 import {
   View, 
   Text,
   StyleSheet,
   StatusBar
-} from 'react-native';
+} from 'react-native'
 
 
 function Home() {
 
-  return(
+  return (
     <View style={styles.container}>
-      <StatusBar barStyle={'light-content'} />
-      <Text>
+      <StatusBar barStyle={'dark-content'} />
+      <Text style={{ color: "#f00" }}>
         Home Screen
       </Text>
     </View>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home;
+export default Home

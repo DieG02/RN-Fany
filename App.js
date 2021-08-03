@@ -1,17 +1,17 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
-
-const Stack = createStackNavigator()
-const Tab = createBottomTabNavigator()
 
 import Home from './src/Views/Home'
 import Search from './src/Views/Search'
 import Song from './src/Views/Song'
 import Footer from './src/Components/Footer'
 
+const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
+const { width, height } = Dimensions.get('window');
 
 function MyTabBar() {
   return (
@@ -19,6 +19,9 @@ function MyTabBar() {
       initialRouteName='Home'
       backBehavior='history'
       tabBar={(props) => <Footer {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
     >
       <Tab.Screen name='Home' component={Home} />
       <Tab.Screen name='Search' component={Search} />
@@ -32,7 +35,7 @@ function App () {
       <View style={styles.container}>
         <Stack.Navigator
           screenOptions={{
-            headerShown: false
+            headerShown: false,
           }}
         >
           <Stack.Screen name='MyTabBar' component={MyTabBar} />
@@ -45,10 +48,9 @@ function App () {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    backgroundColor: "#0f0"
+    width: width,
+    height: height,
+    backgroundColor: "#ff0000"
   }
 
 });

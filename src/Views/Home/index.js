@@ -88,10 +88,38 @@ function Home({ navigation }) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
+        <View style={styles.recents}>
+          <Text style={styles.subTitle}>Recents</Text>
+          <FlatList
+            contentContainerStyle={{ 
+              alignSelf: 'flex-end', 
+              paddingHorizontal: 5
+            }}
+            data={artists}
+            renderItem={RenderSquare}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+
+        <View style={styles.playlists}>
+          <Text style={styles.subTitle}>My playlists</Text>
+          <FlatList
+            contentContainerStyle={{ 
+              alignSelf: 'flex-end', 
+              paddingHorizontal: 5
+            }}
+            data={artists}
+            renderItem={RenderSquare}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
 
 
       </ScrollView>
-
     </SafeAreaView>
   )
 }
@@ -132,13 +160,16 @@ const styles = StyleSheet.create({
   },
   artists: {
     marginTop: '30%',
-    backgroundColor: '#f00',
     height: 110,
   },
   recents: {
     marginTop: '15%',
-    backgroundColor: '#0f0',
     height: 200,
+  },
+  playlists: {
+    marginTop: '15%',
+    height: 200,
+    marginBottom: 50,
   }
 })
 

@@ -3,10 +3,11 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Text,
 } from 'react-native'
 
-// import { FontAwesome, Fontisto, Ionicons } from '@expo/vector-icons'
+import Fontiso from 'react-native-vector-icons/Fontisto'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 
 export default function TabBar({ props }) {
@@ -19,34 +20,12 @@ export default function TabBar({ props }) {
         const isFocused = state.index === index;
         const label = route.name;
 
-        // const menu = {
-        //   Home: {
-        //     icon:
-        //       <Fontisto name='home' size={22} color={isFocused ? '#EEE' : "#444D52"} />
-        //   },
-        //   SearchTab: {
-        //     icon:
-        //       <Ionicons name='search' size={26} color={isFocused ? '#EEE' : "#444D52"} />
-        //   },
-        //   Favourites: {
-        //     icon:
-        //       <Ionicons name='library-sharp' size={25} color={isFocused ? '#EEE' : "#444D52"} />
-        //   },
-        //   Profile: {
-        //     icon:
-        //       <FontAwesome name='user' size={25} color={isFocused ? '#EEE' : "#444D52"} />
-        //   },
-        // };
-
         const menu = {
           Home: {
-            icon: <Text>"HomeIcon"</Text>
+            icon: <Fontiso name='home' size={25} color={isFocused ? '#EEE' : "#444D52"} />
           },
           Search: {
-            icon: <Text>"SearchIcon"</Text>
-          },
-          Song: {
-            icon: <Text>"SongIcon"</Text>
+            icon: <Ionicons name='search' size={25} color={isFocused ? '#EEE' : "#444D52"} />
           },
         };
 

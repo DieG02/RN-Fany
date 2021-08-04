@@ -24,7 +24,7 @@ export default function TabBar({ props }) {
           Home: {
             icon: <Fontiso name='home' size={22} color={isFocused ? '#EEE' : "#444D52"} />
           },
-          Search: {
+          MySearchStack: {
             icon: <Ionicons name='search' size={26} color={isFocused ? '#EEE' : "#444D52"} />
           },
         };

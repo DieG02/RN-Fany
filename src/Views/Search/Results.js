@@ -4,20 +4,20 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  Pressable
+  Pressable,
 } from 'react-native';
 
 
-function Search({ navigation }) {
+function Results({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={'dark-content'}/>
+      <StatusBar barStyle={'dark-content'} />
       <Text>
-        Search Screen
+        Results Screen
       </Text>
-      <Pressable onPress={() => navigation.navigate('Results')} style={{backgroundColor: "#00F", padding: 10 }}>
-        <Text>Go to Results Screen</Text>
+      <Pressable onPress={() => navigation.navigate('Search')} style={{ backgroundColor: "#0A0", padding: 10 }}>
+        <Text>Go to Search Screen</Text>
       </Pressable>
     </View>
   )
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Search;
+export default Results;

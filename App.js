@@ -6,11 +6,24 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import Home from './src/views/Home'
 import Search from './src/views/Search'
+import Results from './src/views/Search/Results'
 import Song from './src/views/Song'
 import Footer from './src/components/Footer'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+
+function MySearchStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName='Search'
+    >
+      <Stack.Screen name='Search' component={Search} />
+      <Stack.Screen name='Results' component={Results} />
+    </Stack.Navigator>
+  )
+}
 
 function MyTabBar() {
   return (
@@ -23,19 +36,18 @@ function MyTabBar() {
       }}
     >
       <Tab.Screen name='Home' component={Home} />
-      <Tab.Screen name='Search' component={Search} />
+      <Tab.Screen name='MySearchStack' component={MySearchStack} options={{ unmountOnBlur: true }} />
     </Tab.Navigator>
   )
 }
+
 
 function App () {
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.container}>
         <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
+          screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name='MyTabBar' component={MyTabBar} />
           <Stack.Screen name='Song' component={Song} />

@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 import {
   View,
   Text,
   StyleSheet,
   StatusBar,
   Pressable
-} from 'react-native';
+} from 'react-native'
 
 
-function Search({ navigation }) {
+function Search ({ navigation }) {
 
   return (
     <View style={styles.container}>
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Search;
+export default Search

@@ -22,10 +22,10 @@ export default function TabBar({ props }) {
 
         const menu = {
           Home: {
-            icon: <Fontiso name='home' size={25} color={isFocused ? '#EEE' : "#444D52"} />
+            icon: <Fontiso name='home' size={22} color={isFocused ? '#EEE' : "#444D52"} />
           },
           Search: {
-            icon: <Ionicons name='search' size={25} color={isFocused ? '#EEE' : "#444D52"} />
+            icon: <Ionicons name='search' size={26} color={isFocused ? '#EEE' : "#444D52"} />
           },
         };
 

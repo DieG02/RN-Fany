@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     backgroundColor: MAIN,
-    // height: 120,
+    height: 45,
     justifyContent: 'flex-end',
   }
 })

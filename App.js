@@ -4,10 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 
-import Home from './src/Views/Home'
-import Search from './src/Views/Search'
-import Song from './src/Views/Song'
-import Footer from './src/Components/Footer'
+import Home from './src/views/Home'
+import Search from './src/views/Search'
+import Song from './src/views/Song'
+import Footer from './src/components/Footer'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()

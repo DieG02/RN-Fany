@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import SvgHome from '../../assets/svg/Home'
 import CircleItem from './CircleItem'
+import SquareItem from './SquareItem'
 import {
   MAIN,
   WHITE,
@@ -32,8 +33,11 @@ function Home({ navigation }) {
   const RenderCircle = ({ item }) => {
     return <CircleItem src={item}/>
   }
+  const RenderSquare = ({ item }) => {
+    return <SquareItem src={item}/>
+  }
 
-  const aux = "https://m.media-amazon.com/images/I/414b2g8sYDL._AC_SX425_.jpg";
+  const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
   const artists = [ aux, aux, aux, aux, aux, aux, aux, aux, aux, aux ];
 
   return (
@@ -69,61 +73,23 @@ function Home({ navigation }) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
+
+        <View style={styles.recents}>
+          <Text style={styles.subTitle}>Recents</Text>
           <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
+            contentContainerStyle={{ 
+              alignSelf: 'flex-end', 
+              paddingHorizontal: 5
+            }}
             data={artists}
-            renderItem={RenderCircle}
+            renderItem={RenderSquare}
             keyExtractor={(_, index) => index.toString()}
             horizontal
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
-          <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
-            data={artists}
-            renderItem={RenderCircle}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
-          <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
-            data={artists}
-            renderItem={RenderCircle}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
-          <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
-            data={artists}
-            renderItem={RenderCircle}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
-          <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
-            data={artists}
-            renderItem={RenderCircle}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
+
+
       </ScrollView>
 
     </SafeAreaView>
@@ -168,6 +134,11 @@ const styles = StyleSheet.create({
     marginTop: '30%',
     backgroundColor: '#f00',
     height: 110,
+  },
+  recents: {
+    marginTop: '15%',
+    backgroundColor: '#0f0',
+    height: 200,
   }
 })
 

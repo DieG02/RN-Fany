@@ -7,26 +7,24 @@ import {
   Dimensions,
   FlatList,
   SafeAreaView,
+  ScrollView,
 } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import LinearGradient from 'react-native-linear-gradient'
 
 import SvgHome from '../../assets/svg/Home'
 import CircleItem from './CircleItem'
 import SquareItem from './SquareItem'
-import {
-  MAIN,
-  WHITE,
-  LIGHT
-} from '../Stylers'
+import { WHITE, LIGHT } from '../Stylers'
 
 
+const colorsGradient = ['#404040', '#303030', '#1F1F1F', '#0F0F0F', '#000'], locationsGradient = [0, 0.2, 0.45, 0.8, 1];
+const { height } = Dimensions.get('window');
+const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
+const artists = [aux, aux, aux, aux, aux, aux, aux, aux, aux, aux];
 
-const colorsGradient = ['#404040', '#303030', '#1F1F1F', '#0F0F0F', '#000'];
-const locationsGradient = [0, 0.2, 0.45, 0.8, 1];
-const { height, width } = Dimensions.get('window');
 
 function Home({ navigation }) {
+
   const FocusAwareStatusBar = (props) => {
     return navigation.isFocused && <StatusBar {...props} />
   }
@@ -36,9 +34,6 @@ function Home({ navigation }) {
   const RenderSquare = ({ item }) => {
     return <SquareItem src={item}/>
   }
-
-  const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
-  const artists = [ aux, aux, aux, aux, aux, aux, aux, aux, aux, aux ];
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -63,7 +58,7 @@ function Home({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.artists}>
-          <Text style={styles.subTitle}>My favourite artists</Text>
+          <Text style={styles.subtitle}>My favourite artists</Text>
           <FlatList
             contentContainerStyle={{ alignSelf: 'flex-end' }}
             data={artists}
@@ -75,7 +70,7 @@ function Home({ navigation }) {
         </View>
 
         <View style={styles.recents}>
-          <Text style={styles.subTitle}>Recents</Text>
+          <Text style={styles.subtitle}>Recents</Text>
           <FlatList
             contentContainerStyle={{ 
               alignSelf: 'flex-end', 
@@ -89,7 +84,7 @@ function Home({ navigation }) {
           />
         </View>
         <View style={styles.recents}>
-          <Text style={styles.subTitle}>Recents</Text>
+          <Text style={styles.subtitle}>Recents</Text>
           <FlatList
             contentContainerStyle={{ 
               alignSelf: 'flex-end', 
@@ -104,7 +99,7 @@ function Home({ navigation }) {
         </View>
 
         <View style={styles.playlists}>
-          <Text style={styles.subTitle}>My playlists</Text>
+          <Text style={styles.subtitle}>My playlists</Text>
           <FlatList
             contentContainerStyle={{ 
               alignSelf: 'flex-end', 
@@ -151,11 +146,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '25%',
   },
-  subTitle: {
+  subtitle: {
     fontWeight: 'bold',
     color: LIGHT,
     fontSize: 20,
-    fontWeight: 'bold',
     paddingLeft: 15,
   },
   artists: {

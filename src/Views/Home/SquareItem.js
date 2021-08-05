@@ -9,7 +9,6 @@ import {
 
 
 export default function Square({ src, song }) {
-  console.log(src)
   const [stylers, setStylers] = useState({
     height: 150,
     width: 150,
@@ -25,12 +24,10 @@ export default function Square({ src, song }) {
         onPressIn={() => setStylers({ height: 144, width: 144, marginTop: 3, marginLeft: 3 })}
         onPressOut={() => setStylers({ height: 150, width: 150, margin: 0 })}
       >
-
         <Image
           source={{ uri: !!song ? song.image : src }}
           style={[{ borderRadius: 10 }, stylers]}
         />
-
         {song &&
           <View style={styles.content}>
             <Text style={styles.text}>

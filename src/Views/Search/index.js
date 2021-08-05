@@ -7,6 +7,7 @@ import {
   Pressable,
   Dimensions,
   SafeAreaView,
+  Keyboard,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -20,9 +21,19 @@ const { height } = Dimensions.get('window');
 
 function Search ({ navigation }) {
 
+  const FocusAwareStatusBar = (props) => {
+    const isFocused = navigation.isFocused();
+    isFocused && Keyboard.dismiss();
+    return isFocused && <StatusBar {...props} />
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar barStyle={'dark-content'}/>
+      <FocusAwareStatusBar 
+        translucent={true}
+        backgroundColor='transparent'
+        barStyle='light-content'
+      />
       <LinearGradient
         colors={colorsGradient}
         locations={locationsGradient}

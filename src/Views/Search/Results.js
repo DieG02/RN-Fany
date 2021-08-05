@@ -6,9 +6,12 @@ import {
   StatusBar,
   Pressable,
   Keyboard,
+  TouchableOpacity,
+  TextInput,
 } from 'react-native'
 
-import { DARK, LIGHT, WHITE, BLACK } from '../Stylers'
+import { GREY, LIGHT, WHITE, BLACK } from '../Stylers'
+
 
 function Results ({ navigation }) {
 
@@ -25,20 +28,29 @@ function Results ({ navigation }) {
         barStyle='light-content'
       />
       <View style={styles.searchBar}>
-        <View style={styles.icon}>
-          <Text>S</Text>
-        </View>
-        <Text>
-          Results Screen
-        </Text>
-        <View style={styles.icon}>
+        <TouchableOpacity 
+          style={styles.icon}
+          onPress={() => console.log('Go back')}
+          activeOpacity={0.1}
+        >
+          <Text>B</Text>
+        </TouchableOpacity>
+        <TextInput
+          autoFocus
+          // value={value}
+          style={styles.input}
+          placeholder='Enter name or URL'
+          placeholderTextColor={GREY}
+        />
+        <TouchableOpacity 
+          style={styles.icon}
+          onPress={() => console.log('Empty input')}
+          activeOpacity={0.1}
+        >
           <Text>x</Text>
-        </View>
+        </TouchableOpacity>
 
       </View>
-      <Pressable onPress={() => navigation.navigate('Search')} style={{ backgroundColor: "#0A0", padding: 10 }}>
-        <Text>Go to Search Screen</Text>
-      </Pressable>
     </View>
   )
 }
@@ -57,6 +69,13 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     justifyContent: 'space-between',
     flexDirection: 'row',
+  },
+  input: {
+    width: '78%',
+    color: WHITE,
+    fontSize: 14,
+    paddingTop: 3,
+    paddingLeft: 10,
   },
   icon: {
     width: '11%',

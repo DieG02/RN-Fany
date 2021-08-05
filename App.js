@@ -33,6 +33,10 @@ function MyTabBar() {
       tabBar={(props) => <Footer {...props} />}
       screenOptions={{
         headerShown: false,
+        keyboardHidesTabBar: true,
+        style: {
+          position: 'absolute',
+        },
       }}
     >
       <Tab.Screen name='Home' component={Home} />

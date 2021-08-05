@@ -8,7 +8,7 @@ export default function Footer({ state, descriptors, navigation, title }) {
   const props = { state, descriptors, navigation, title }
 
   return (
-    <View style={styles.container}>
+    <View  style={styles.container}>
       <TabBar props={props} />
     </View>
   )

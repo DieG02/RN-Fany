@@ -4,11 +4,11 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  Pressable,
   Keyboard,
   TouchableOpacity,
   TextInput,
 } from 'react-native'
+import Entypo from 'react-native-vector-icons/Entypo'
 
 import { GREY, LIGHT, WHITE, BLACK } from '../Stylers'
 
@@ -33,7 +33,7 @@ function Results ({ navigation }) {
           onPress={() => console.log('Go back')}
           activeOpacity={0.1}
         >
-          <Text>B</Text>
+          <Entypo name="chevron-small-left" size={25} color={LIGHT} />
         </TouchableOpacity>
         <TextInput
           autoFocus
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     width: '11%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0f0',
   }
 
 })

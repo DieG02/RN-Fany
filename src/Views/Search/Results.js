@@ -11,7 +11,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 
 import { GREY, LIGHT, WHITE, BLACK } from '../Stylers'
-
+import Times from '../../assets/svg/Times'
 
 function Results ({ navigation }) {
 
@@ -47,7 +47,7 @@ function Results ({ navigation }) {
           onPress={() => console.log('Empty input')}
           activeOpacity={0.1}
         >
-          <Text>x</Text>
+          <Times width='20' height='20' color={LIGHT} />
         </TouchableOpacity>
 
       </View>
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   searchBar: {
     backgroundColor: '#303030',
     width: '100%',
-    height: 50,
-    marginTop: StatusBar.currentHeight,
+    height: 50 + StatusBar.currentHeight,
+    paddingTop: StatusBar.currentHeight,
     justifyContent: 'space-between',
     flexDirection: 'row',
   },

@@ -12,7 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import { WHITE, LIGHT } from '../Stylers'
+import { Colors } from '../Stylers'
 
 const colorsGradient = ['#404040', '#343434', '#111111', '#000000'];
 const locationsGradient = [0.05, 0.15, 0.3, 0.5];
@@ -77,14 +77,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: WHITE,
+    color: Colors.WHITE,
     fontSize: height > 720 ? 30 : 27,
     fontWeight: 'bold',
     textAlign: 'center',
     top: 15,
   },
   button: {
-    backgroundColor: LIGHT,
+    backgroundColor: Colors.LIGHT,
     height: 38,
     width: '100%',
     borderRadius: 20,
@@ -105,14 +105,14 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontWeight: 'bold',
-    color: LIGHT,
+    color: Colors.LIGHT,
     fontSize: 20,
     marginTop: 10,
     marginBottom: 30,
   },
   auxiliar: {
     fontWeight: 'bold',
-    color: LIGHT,
+    color: Colors.LIGHT,
     fontSize: 17
   }
 })

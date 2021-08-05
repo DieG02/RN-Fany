@@ -10,9 +10,7 @@ import {
 } from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
 
-import { 
-  GREY, LIGHT, WHITE, BLACK,
-} from '../Stylers'
+import { Colors } from '../Stylers'
 import Times from '../../assets/svg/Times'
 
 function Results ({ navigation }) {
@@ -35,21 +33,21 @@ function Results ({ navigation }) {
           onPress={() => console.log('Go back')}
           activeOpacity={0.1}
         >
-          <Entypo name="chevron-small-left" size={25} color={LIGHT} />
+          <Entypo name="chevron-small-left" size={25} color={Colors.LIGHT} />
         </TouchableOpacity>
         <TextInput
           autoFocus
           // value={value}
           style={styles.input}
           placeholder='Enter name or URL'
-          placeholderTextColor={GREY}
+          placeholderTextColor={Colors.GREY}
         />
         <TouchableOpacity 
           style={styles.icon}
           onPress={() => console.log('Empty input')}
           activeOpacity={0.1}
         >
-          <Times width='20' height='20' color={LIGHT} />
+          <Times width='20' height='20' color={Colors.LIGHT} />
         </TouchableOpacity>
 
       </View>
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'flex-start',
-    backgroundColor: BLACK,
+    backgroundColor: Colors.BLACK,
     width: '100%',
   },
   searchBar: {
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '78%',
-    color: WHITE,
+    color: Colors.WHITE,
     fontSize: 14,
     paddingTop: 3,
     paddingLeft: 10,

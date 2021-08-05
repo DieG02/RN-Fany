@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import TabBar from './TabBar'
-import { MAIN } from '../Stylers'
+import { Colors } from '../Stylers'
 
 export default function Footer({ state, descriptors, navigation, title }) {
   const props = { state, descriptors, navigation, title }
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     bottom: 0,
-    backgroundColor: MAIN,
+    backgroundColor: Colors.MAIN,
     height: 45,
     justifyContent: 'flex-end',
   }

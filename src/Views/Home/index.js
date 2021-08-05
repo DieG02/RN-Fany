@@ -13,11 +13,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import CircleItem from './CircleItem'
 import SquareItem from './SquareItem'
-import { 
-  Poppins,
-  WHITE, 
-  LIGHT,
-} from '../Stylers'
+import { Poppins, Colors } from '../Stylers'
 import SvgHome from '../../assets/svg/Home'
 
 
@@ -144,7 +140,7 @@ const styles = StyleSheet.create({
     zIndex: 5,
   },
   title: {
-    color: WHITE,
+    color: Colors.WHITE,
     fontSize: height > 720 ? 30 : 27,
     marginLeft: 15,
     position: 'absolute',
@@ -152,7 +148,7 @@ const styles = StyleSheet.create({
     top: '25%',
   },
   subtitle: {
-    color: LIGHT,
+    color: Colors.LIGHT,
     fontSize: 20,
     paddingLeft: 15,
     fontFamily: Poppins._500,

@@ -38,6 +38,7 @@ function MyTabBar() {
     >
       <Tab.Screen name='Home' component={Home} />
       <Tab.Screen name='MySearchStack' component={MySearchStack} options={{ unmountOnBlur: true }} />
+      <Tab.Screen name='Song' component={Song} />
     </Tab.Navigator>
   )
 }
@@ -51,7 +52,7 @@ function App () {
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name='MyTabBar' component={MyTabBar} />
-          <Stack.Screen name='Song' component={Song} />
+          {/* <Stack.Screen name='Song' component={Song} /> */}
         </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>

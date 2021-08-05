@@ -27,6 +27,9 @@ export default function TabBar({ props }) {
           MySearchStack: {
             icon: <Ionicons name='search' size={26} color={isFocused ? '#EEE' : "#444D52"} />
           },
+          Song: {
+            icon: <FontAwesome name='music' size={23} color={isFocused ? '#EEE' : "#444D52"} />
+          }
         };
 
         const onPress = () => {

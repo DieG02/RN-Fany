@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
   View, 
   Text,
@@ -10,11 +10,14 @@ import {
   ScrollView,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import GlobalFont from 'react-native-global-font'
 
 import CircleItem from './CircleItem'
 import SquareItem from './SquareItem'
-import { WHITE, LIGHT } from '../Stylers'
+import { 
+  Poppins,
+  WHITE, 
+  LIGHT,
+} from '../Stylers'
 import SvgHome from '../../assets/svg/Home'
 
 
@@ -36,16 +39,7 @@ function Home({ navigation }) {
     return <SquareItem src={item}/>
   }
 
-  const [isFontLoaded, setFont] = useState(false);
 
-  useEffect(() => {
-    let fontName = 'Poppins-Bold';
-    GlobalFont.applyGlobal(fontName);
-    setFont(true)
-  }, [])
-  
-  
-  if (!isFontLoaded) return null;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusAwareStatusBar
@@ -152,16 +146,16 @@ const styles = StyleSheet.create({
   title: {
     color: WHITE,
     fontSize: height > 720 ? 30 : 27,
-    // fontWeight: 'bold',
     marginLeft: 15,
     position: 'absolute',
+    fontFamily: Poppins._600,
     top: '25%',
   },
   subtitle: {
-    // fontWeight: 'bold',
     color: LIGHT,
     fontSize: 20,
     paddingLeft: 15,
+    fontFamily: Poppins._500,
   },
   artists: {
     marginTop: '30%',

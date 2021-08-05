@@ -10,7 +10,9 @@ import {
 } from 'react-native'
 import Entypo from 'react-native-vector-icons/Entypo'
 
-import { GREY, LIGHT, WHITE, BLACK } from '../Stylers'
+import { 
+  GREY, LIGHT, WHITE, BLACK,
+} from '../Stylers'
 import Times from '../../assets/svg/Times'
 
 function Results ({ navigation }) {

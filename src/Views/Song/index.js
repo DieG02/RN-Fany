@@ -10,23 +10,11 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import TrackPlayer from 'react-native-track-player'
+import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-  
-
-// const load = async () => {
-//   const state = await TrackPlayer.getState();
-//   if (state === Current.Playing) {
-//     console.log('The player is playing');
-//   };
-
-//   let trackIndex = await TrackPlayer.getCurrentTrack();
-//   let trackObject = await TrackPlayer.getTrack(trackIndex);
-//   console.log(`Title: ${trackObject.title}`);
-
-//   const position = await TrackPlayer.getPosition();
-//   const duration = await TrackPlayer.getDuration();
-//   console.log(`${duration - position} seconds left.`);
-// }
+import Controls from './Controls'
+import { Colors } from '../Stylers'
 
 const start = async () => {
   // Set up the player
@@ -78,17 +66,18 @@ function Song() {
           style={styles.icon}
           onPress={() => console.log('Back')}
         >
-          <Text>{`<`}</Text>
+          <Entypo name="chevron-small-left" size={25} color={Colors.WHITE} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.icon}
           onPress={() => console.log('Menu')}
         >
-          <Text>{`=`}</Text>
+          <Ionicons name="menu-outline" size={24} color={Colors.WHITE} />
         </TouchableOpacity>
       </View>
 
       <SafeAreaView style={styles.container}>
+        <Controls />
       </SafeAreaView>
     </View>
   )
@@ -118,18 +107,19 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    height: 50,
+    height: 45,
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#0f0',
     top: StatusBar.currentHeight,
+    paddingHorizontal: 5,
   },
   icon: {
-    width: '11%',
-    justifyContent: 'center',
+    width: 50,
+    height: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   container: {
     width: '85%',

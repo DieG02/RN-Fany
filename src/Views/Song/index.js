@@ -122,8 +122,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
-    width: '85%',
-    height: '92%',
+      width: '100%',
+      paddingHorizontal: 25,
+      height: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'space-around',

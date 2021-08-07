@@ -30,7 +30,7 @@ function Controls () {
         onPress={() => setSave(!isSaved)}
       >
         {isSaved
-          ?  <Ionicons name='bookmark' size={24} color={Colors.LIGHT} />
+          ? <Ionicons name='bookmark' size={24} color={Colors.LIGHT} />
           : <Ionicons name='bookmark-outline' size={24} color={Colors.LIGHT} />
         }
       </TouchableOpacity>

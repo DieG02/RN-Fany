@@ -9,6 +9,7 @@ import Search from './src/views/Search'
 import Results from './src/views/Search/Results'
 import Song from './src/views/Song'
 import Footer from './src/components/Footer'
+import Example from './src/views/Song/example/PlaylistScreen'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -53,6 +54,7 @@ function App () {
         >
           <Stack.Screen name='MyTabBar' component={MyTabBar} />
           {/* <Stack.Screen name='Song' component={Song} /> */}
+          <Stack.Screen name='Example' component={Example} />
         </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>

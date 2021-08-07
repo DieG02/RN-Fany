@@ -34,11 +34,11 @@ const start = async () => {
 };
 
 
-function Song() {
+function Song({ navigation }) {
 
-  useEffect(() => {
-    start();
-  }, [])
+  // useEffect(() => {
+  //   start();
+  // }, [])
   const colorsGradient = ['transparent', '#151515', '#000'],
         locationsGradient = [0.6, 0.85, 0.95],
         image = 'https://i.ytimg.com/vi/24C8r8JupYY/maxresdefault.jpg';
@@ -70,7 +70,7 @@ function Song() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => console.log('Menu')}
+          onPress={() => navigation.navigate('Example')}
         >
           <Ionicons name="menu-outline" size={24} color={Colors.WHITE} />
         </TouchableOpacity>

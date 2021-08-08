@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import TrackPlayer, { usePlaybackState } from "react-native-track-player";
 
 import Player from "./Player";
 import playlistData from "./playlist.json";
 
-export default function PlaylistScreen() {
+export default function PlaylistScreen({ navigation }) {
   const playbackState = usePlaybackState();
 
   useEffect(() => {
@@ -60,6 +60,12 @@ export default function PlaylistScreen() {
         `playlist.json`. We'll also be using the `ProgressComponent` which
         allows us to track playback time.
       </Text>
+      <TouchableOpacity
+        style={{ backgroundColor: '#ccc', height: 30, width: 50 }}
+        onPress={() => navigation.goBack()}
+      >
+        <Text>Back</Text>
+      </TouchableOpacity>
       <Player
         onNext={skipToNext}
         style={styles.player}

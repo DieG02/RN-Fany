@@ -17,7 +17,10 @@ import { Poppins, Colors } from '../Stylers'
 import SvgHome from '../../assets/svg/Home'
 
 
-const colorsGradient = ['#404040', '#303030', '#1F1F1F', '#0F0F0F', '#000'], locationsGradient = [0, 0.2, 0.45, 0.8, 1];
+// const colorsGradient = ['#404040', '#303030', '#1F1F1F', '#0F0F0F', '#000'], 
+//       locationsGradient = [0, 0.2, 0.45, 0.8, 1];
+const colorsGradient = ['#404040', '#101010', '#000'];
+const locationsGradient = [0, 0.45, 1];
 const { height } = Dimensions.get('window');
 const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
 const artists = [aux, aux, aux, aux, aux, aux, aux, aux, aux, aux];
@@ -98,6 +101,20 @@ function Home({ navigation }) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
+        <View style={styles.recents}>
+          <Text style={styles.subtitle}>Recents</Text>
+          <FlatList
+            contentContainerStyle={{ 
+              alignSelf: 'flex-end', 
+              paddingHorizontal: 5
+            }}
+            data={artists}
+            renderItem={RenderSquare}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
 
         <View style={styles.playlists}>
           <Text style={styles.subtitle}>My playlists</Text>
@@ -149,21 +166,19 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: Colors.LIGHT,
-    fontSize: 20,
+    fontSize: 19,
     paddingLeft: 15,
-    fontFamily: Poppins._500,
+    fontFamily: Poppins._600,
+    marginBottom: '5%',
   },
   artists: {
     marginTop: '30%',
-    height: 110,
   },
   recents: {
-    marginTop: '15%',
-    height: 200,
+    marginTop: '13%',
   },
   playlists: {
-    marginTop: '15%',
-    height: 200,
+    marginTop: '13%',
     marginBottom: 50,
   }
 })

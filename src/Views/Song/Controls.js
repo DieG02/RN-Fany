@@ -30,8 +30,8 @@ function Controls () {
         onPress={() => setSave(!isSaved)}
       >
         {isSaved
-          ? <Ionicons name='bookmark' size={24} color={Colors.LIGHT} />
-          : <Ionicons name='bookmark-outline' size={24} color={Colors.LIGHT} />
+          ?  <Ionicons  name='bookmark' size={22}  color={Colors.LIGHT} />
+          :  <Ionicons  name='bookmark-outline' size={22}  color={Colors.LIGHT} />
         }
       </TouchableOpacity>
       <View style={styles.mainControllers}>
@@ -39,22 +39,22 @@ function Controls () {
           style={styles.icons}
           onPress={() => console.log('Do something')}
         >
-          <Ionicons name='play-skip-back' size={24} color={Colors.LIGHT} />
+          <Ionicons name='play-skip-back' size={25} color={Colors.LIGHT} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.play}
           onPress={() => setPlaying(!isPlaying)}
         >
           {isPlaying
-            ?  <MaterialCommunityIcons name='pause-circle' size={55} color={Colors.WHITE}/>
-            :  <MaterialCommunityIcons name='play-circle' size={55} color={Colors.WHITE}/>
+            ?  <MaterialCommunityIcons name='pause-circle' size={60} color={Colors.WHITE}/>
+            :  <MaterialCommunityIcons name='play-circle' size={60} color={Colors.WHITE}/>
           }
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.icons}
           onPress={() => console.log('Do something')}
         >
-          <Ionicons name='play-skip-forward' size={24} color={Colors.LIGHT} />
+          <Ionicons name='play-skip-forward' size={25} color={Colors.LIGHT} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -63,7 +63,7 @@ function Controls () {
       >
         <FontAwesome 
           name={loop[index].icon} 
-          size={24} 
+          size={20} 
           color={loop[index].color} 
         />
       </TouchableOpacity>

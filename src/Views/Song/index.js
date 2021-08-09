@@ -9,10 +9,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import TrackPlayer, {
-  usePlaybackState,
-  useTrackPlayerEvents,
-} from 'react-native-track-player'
+import TrackPlayer, { useTrackPlayerEvents } from 'react-native-track-player'
 import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
@@ -34,14 +31,14 @@ const colorsGradient = ['transparent', '#151515', '#000'],
 
 function Song({ navigation }) {
   
-  const playbackState = usePlaybackState();
   const [trackTitle, setTrackTitle] = useState('');
   const [trackArtwork, setTrackArtwork] = useState();
   const [trackArtist, setTrackArtist] = useState('');
+
+
   useTrackPlayerEvents(['playback-track-changed'], async event => {
     if (event.type === TrackPlayer.TrackPlayerEvents.PLAYBACK_TRACK_CHANGED) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
-      console.log(track)
       const { title, artist, artwork } = track || {};
       setTrackTitle(title);
       setTrackArtist(artist);
@@ -51,7 +48,10 @@ function Song({ navigation }) {
 
   useEffect(() => {
     setup();
+    // togglePlayback(); // -->> Un
   }, []);
+
+ 
 
   return (
     <View style={styles.body}>

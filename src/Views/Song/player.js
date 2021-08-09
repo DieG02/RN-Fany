@@ -22,20 +22,22 @@ export async function setup() {
   });
 }
 
-// function getStateName(state) {
-//   switch (state) {
-//     case TrackPlayer.STATE_NONE:
-//       return 'None';
-//     case TrackPlayer.STATE_PLAYING:
-//       return 'Playing';
-//     case TrackPlayer.STATE_PAUSED:
-//       return 'Paused';
-//     case TrackPlayer.STATE_STOPPED:
-//       return 'Stopped';
-//     case TrackPlayer.STATE_BUFFERING:
-//       return 'Buffering';
-//   }
-// }
+/*
+* function getStateName(state) {
+*   switch (state) {
+*     case TrackPlayer.STATE_NONE:
+*       return 'None';
+*     case TrackPlayer.STATE_PLAYING:
+*       return 'Playing';
+*     case TrackPlayer.STATE_PAUSED:
+*       return 'Paused';
+*     case TrackPlayer.STATE_STOPPED:
+*       return 'Stopped';
+*     case TrackPlayer.STATE_BUFFERING:
+*       return 'Buffering';
+*   }
+* }
+*/
 
 export async function togglePlayback(state) {
   const currentTrack = await TrackPlayer.getCurrentTrack();
@@ -61,6 +63,19 @@ export async function skipToNext() {
 export async function skipToPrevious() {
   try {
     await TrackPlayer.skipToPrevious();
+  } catch (_) { }
+
+}
+
+export async function seekTo(seconds) {
+  try {
+    await TrackPlayer.seekTo(seconds);
+  } catch (_) { }
+}
+
+export async function getDuration() {
+  try {
+    await TrackPlayer.getDuration;
   } catch (_) { }
 }
 

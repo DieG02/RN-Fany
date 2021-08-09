@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     paddingLeft: 15,
     fontFamily: Poppins._600,
-    marginBottom: '5%',
+    marginBottom: '3%',
   },
   artists: {
     marginTop: '30%',

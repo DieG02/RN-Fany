@@ -40,9 +40,7 @@ function Search ({ navigation }) {
         style={styles.linearGradient}
       />
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Search</Text>
-        </View>
+        <Text style={styles.title}>Search</Text>
         <Pressable 
           onPress={() => navigation.navigate('Results')} 
           style={styles.button}
@@ -73,7 +71,6 @@ const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 100,
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
@@ -85,8 +82,8 @@ const styles = StyleSheet.create({
     fontFamily: Poppins._600,
     marginRight: 'auto',
     marginLeft: 'auto',
-    marginTop: height > 720 ? '17%' : '10%',
-    marginBottom: height > 720 ? '8%' : '5%',
+    marginTop: '20%',
+    marginBottom: '5%',
   },
   button: {
     backgroundColor: Colors.LIGHT,

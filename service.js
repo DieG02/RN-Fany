@@ -1,4 +1,3 @@
-
 /**
  * This is the code that will run tied to the player.
  *
@@ -27,6 +26,14 @@ module.exports = async function () {
   TrackPlayer.addEventListener('remote-previous', () => {
     TrackPlayer.skipToPrevious()
   });
+
+  TrackPlayer.addEventListener('remote-previous', () => {
+    TrackPlayer.skipToPrevious()
+  });
+
+  // TrackPlayer.addEventListener('remote-seek', (value) => {
+  //   TrackPlayer.seekTo(value)
+  // });
 
   TrackPlayer.addEventListener('remote-stop', () => {
     TrackPlayer.destroy()

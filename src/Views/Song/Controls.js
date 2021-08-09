@@ -5,13 +5,17 @@ import {
   StyleSheet,
   SafeAreaView
 } from 'react-native'
+import TrackPlayer, { usePlaybackState } from 'react-native-track-player'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { Colors } from '../Stylers'
 
-function Controls () {
+
+function Controls({ onNext, onPrevious, onTogglePlayback }) {
+  
+  const playbackState = usePlaybackState();
 
   const [isPlaying, setPlaying] = useState(true);
   const [isSaved, setSave] = useState(false);
@@ -23,6 +27,15 @@ function Controls () {
     { icon: 'reply-all', color: Colors.MAIN, action: () => setIndex(0) }
   ]
 
+  let middleButtonText = 'Play';
+
+  if (
+    playbackState === TrackPlayer.STATE_PLAYING ||
+    playbackState === TrackPlayer.STATE_BUFFERING
+  ) {
+    middleButtonText = 'Pause';
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
@@ -30,29 +43,32 @@ function Controls () {
         onPress={() => setSave(!isSaved)}
       >
         {isSaved
-          ?  <Ionicons  name='bookmark' size={22}  color={Colors.LIGHT} />
-          :  <Ionicons  name='bookmark-outline' size={22}  color={Colors.LIGHT} />
+          ?  <Ionicons  name='bookmark' size={20}  color={Colors.LIGHT} />
+          :  <Ionicons  name='bookmark-outline' size={20}  color={Colors.LIGHT} />
         }
       </TouchableOpacity>
       <View style={styles.mainControllers}>
         <TouchableOpacity
           style={styles.icons}
-          onPress={() => console.log('Do something')}
+          onPress={onPrevious}
         >
           <Ionicons name='play-skip-back' size={25} color={Colors.LIGHT} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.play}
-          onPress={() => setPlaying(!isPlaying)}
+          onPress={() => {
+            setPlaying(!isPlaying)
+            onTogglePlayback(playbackState)
+          }}
         >
-          {isPlaying
-            ?  <MaterialCommunityIcons name='pause-circle' size={60} color={Colors.WHITE}/>
-            :  <MaterialCommunityIcons name='play-circle' size={60} color={Colors.WHITE}/>
+          {middleButtonText === 'Play'
+            ? <MaterialCommunityIcons name='play-circle' size={60} color={Colors.WHITE}/>
+            : <MaterialCommunityIcons name='pause-circle' size={60} color={Colors.WHITE}/>
           }
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.icons}
-          onPress={() => console.log('Do something')}
+          onPress={onNext}
         >
           <Ionicons name='play-skip-forward' size={25} color={Colors.LIGHT} />
         </TouchableOpacity>
@@ -63,7 +79,7 @@ function Controls () {
       >
         <FontAwesome 
           name={loop[index].icon} 
-          size={20} 
+          size={19} 
           color={loop[index].color} 
         />
       </TouchableOpacity>
@@ -73,7 +89,6 @@ function Controls () {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: '3%',
     height: 60,
     width: '100%',
     justifyContent: 'space-between',

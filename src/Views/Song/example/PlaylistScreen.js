@@ -16,12 +16,14 @@ export default function PlaylistScreen({ navigation }) {
     await TrackPlayer.setupPlayer({});
     await TrackPlayer.updateOptions({
       stopWithApp: true,
+      alwaysPauseOnInterruption: true,
       capabilities: [
         TrackPlayer.CAPABILITY_PLAY,
         TrackPlayer.CAPABILITY_PAUSE,
         TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
         TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-        TrackPlayer.CAPABILITY_STOP
+        TrackPlayer.CAPABILITY_STOP,
+        TrackPlayer.CAPABILITY_SEEK_TO
       ],
       compactCapabilities: [
         TrackPlayer.CAPABILITY_PLAY,
@@ -30,19 +32,26 @@ export default function PlaylistScreen({ navigation }) {
     });
   }
 
+  // function getStateName(state) {
+  //   switch (state) {
+  //     case TrackPlayer.STATE_NONE:
+  //       return "None";
+  //     case TrackPlayer.STATE_PLAYING:
+  //       return "Playing";
+  //     case TrackPlayer.STATE_PAUSED:
+  //       return "Paused";
+  //     case TrackPlayer.STATE_STOPPED:
+  //       return "Stopped";
+  //     case TrackPlayer.STATE_BUFFERING:
+  //       return "Buffering";
+  //   }
+  // }
+
   async function togglePlayback() {
     const currentTrack = await TrackPlayer.getCurrentTrack();
     if (currentTrack == null) {
       await TrackPlayer.reset();
       await TrackPlayer.add(playlistData);
-      // await TrackPlayer.add({
-      //   id: "local-track",
-      //   url: localTrack,
-      //   title: "Pure (Demo)",
-      //   artist: "David Chavez",
-      //   artwork: "https://i.picsum.photos/id/500/200/200.jpg",
-      //   duration: 28
-      // });
       await TrackPlayer.play();
     } else {
       if (playbackState === TrackPlayer.STATE_PAUSED) {
@@ -52,6 +61,19 @@ export default function PlaylistScreen({ navigation }) {
       }
     }
   }
+
+  async function skipToNext() {
+    try {
+      await TrackPlayer.skipToNext();
+    } catch (_) { }
+  }
+
+  async function skipToPrevious() {
+    try {
+      await TrackPlayer.skipToPrevious();
+    } catch (_) { }
+  }
+
 
   return (
     <View style={styles.container}>
@@ -67,46 +89,16 @@ export default function PlaylistScreen({ navigation }) {
         <Text>Back</Text>
       </TouchableOpacity>
       <Player
-        onNext={skipToNext}
         style={styles.player}
+        onNext={skipToNext}
         onPrevious={skipToPrevious}
         onTogglePlayback={togglePlayback}
       />
-      <Text style={styles.state}>{getStateName(playbackState)}</Text>
+      {/* <Text style={styles.state}>{getStateName(playbackState)}</Text> */}
     </View>
   );
 }
 
-PlaylistScreen.navigationOptions = {
-  title: "Playlist Example"
-};
-
-function getStateName(state) {
-  switch (state) {
-    case TrackPlayer.STATE_NONE:
-      return "None";
-    case TrackPlayer.STATE_PLAYING:
-      return "Playing";
-    case TrackPlayer.STATE_PAUSED:
-      return "Paused";
-    case TrackPlayer.STATE_STOPPED:
-      return "Stopped";
-    case TrackPlayer.STATE_BUFFERING:
-      return "Buffering";
-  }
-}
-
-async function skipToNext() {
-  try {
-    await TrackPlayer.skipToNext();
-  } catch (_) {}
-}
-
-async function skipToPrevious() {
-  try {
-    await TrackPlayer.skipToPrevious();
-  } catch (_) {}
-}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,57 +1,60 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   View,
   Text,
   Image,
-  StyleSheet,
   StatusBar,
   SafeAreaView,
-  Dimensions,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import TrackPlayer from 'react-native-track-player'
+import TrackPlayer, {
+  usePlaybackState,
+  useTrackPlayerEvents,
+} from 'react-native-track-player'
 import Entypo from 'react-native-vector-icons/Entypo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
+import {
+  setup,
+  togglePlayback,
+  skipToPrevious,
+  skipToNext,
+} from './player.js'
 import Controls from './Controls'
+import SliderBar from './SliderBar'
+import styles from './styles'
 import { Colors } from '../Stylers'
 
-const start = async () => {
-  // Set up the player
-  await TrackPlayer.setupPlayer();
-  const url = 'https://drive.google.com/uc?id=1AjPwylDJgR8DOnmJWeRgZzjsohi-7ekj';
-  const artwork = '../../assets/TMP/Rolling in the deep.jpg';
-  const track3 = {
-    id: 'trialTrack01',
-    url: { uri: url },
-    title: 'Title from song',
-    artist: 'Some artist',
-    artwork: artwork,
-  };
-  await TrackPlayer.add([track3]);
-  // Start playing it
-  // await TrackPlayer.play();
-};
-const { height, width } = Dimensions.get('window');
+
+const image = 'https://i.ytimg.com/vi/24C8r8JupYY/hqdefault.jpg';
+const colorsGradient = ['transparent', '#151515', '#000'],
+      locationsGradient = [0.6, 0.85, 0.95];
 
 function Song({ navigation }) {
+  
+  const playbackState = usePlaybackState();
+  const [trackTitle, setTrackTitle] = useState('');
+  const [trackArtwork, setTrackArtwork] = useState();
+  const [trackArtist, setTrackArtist] = useState('');
+  useTrackPlayerEvents(['playback-track-changed'], async event => {
+    if (event.type === TrackPlayer.TrackPlayerEvents.PLAYBACK_TRACK_CHANGED) {
+      const track = await TrackPlayer.getTrack(event.nextTrack);
+      const { title, artist, artwork } = track || {};
+      setTrackTitle(title);
+      setTrackArtist(artist);
+      setTrackArtwork(artwork);
+    }
+  });
 
-  // useEffect(() => {
-  //   start();
-  // }, [])
-  const colorsGradient = ['transparent', '#151515', '#000'],
-        locationsGradient = [0.6, 0.85, 0.95],
-    image = 'https://i.ytimg.com/vi/24C8r8JupYY/hqdefault.jpg';
-
+  useEffect(() => {
+    setup();
+  }, []);
 
   return (
     <View style={styles.body}>
-      <StatusBar 
-        barStyle='light-content' 
-        translucent={true} 
-      />
+      <StatusBar barStyle='light-content'  translucent={true} />
       <ImageBackground 
         source={{ uri: image }} 
         blurRadius={15} 
@@ -74,67 +77,26 @@ function Song({ navigation }) {
           style={styles.icon}
           onPress={() => navigation.navigate('Example')}
         >
-          <Ionicons name="menu-outline" size={24} color={Colors.WHITE} />
+          <SimpleLineIcons name="menu" size={19} color={Colors.WHITE} />
         </TouchableOpacity>
       </View>
 
       <SafeAreaView style={styles.container}>
         <Image source={{ uri: image }} style={styles.image} />
-        <Controls />
+        <View style={styles.options}>
+          <Text>{trackTitle}</Text>
+          <Text>{trackArtwork}</Text>
+          <Text>{trackArtist}</Text>
+          <SliderBar />
+          <Controls 
+            onNext={skipToNext}
+            onPrevious={skipToPrevious}
+            onTogglePlayback={togglePlayback}
+          />
+        </View>
       </SafeAreaView>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    marginBottom: 50, // --> Delete this line
-  },
-  imageBackground: {
-    position: 'absolute',
-    top: '-10%',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    resizeMode: 'stretch',
-    transform: [{ rotate: '180deg' }],
-  },
-  background: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: '100%',
-  },
-
-  header: {
-    height: 45,
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: StatusBar.currentHeight,
-  },
-  icon: {
-    width: 50,
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  container: {
-    flex: 1,
-    paddingHorizontal: 30,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  image: {
-    width: '100%',
-    height: width - 60,
-    resizeMode: 'cover' // 'contain'
-  },
-
-})
 
 export default Song;

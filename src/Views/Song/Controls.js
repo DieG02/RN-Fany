@@ -5,7 +5,7 @@ import {
   StyleSheet,
   SafeAreaView
 } from 'react-native'
-import TrackPlayer, { usePlaybackState } from 'react-native-track-player'
+import TrackPlayer, { State, usePlaybackState } from 'react-native-track-player'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -30,8 +30,8 @@ function Controls({ onNext, onPrevious, onTogglePlayback }) {
   let middleButtonText = 'Play';
 
   if (
-    playbackState === TrackPlayer.STATE_PLAYING ||
-    playbackState === TrackPlayer.STATE_BUFFERING
+    playbackState === State.Playing ||
+    playbackState === State.Buffering
   ) {
     middleButtonText = 'Pause';
   }

@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { State, Capability } from 'react-native-track-player';
 import playlistData from './example/playlist.json';
 
 
@@ -8,17 +8,17 @@ export async function setup() {
     stopWithApp: true,
     alwaysPauseOnInterruption: true,
     capabilities: [
-      TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE,
-      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-      TrackPlayer.CAPABILITY_STOP,
-      TrackPlayer.CAPABILITY_SEEK_TO
+      Capability.Stop,
+      Capability.Pause,
+      Capability.Play,
+      Capability.SeekTo,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
     ],
     compactCapabilities: [
-      TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE,
-      TrackPlayer.CAPABILITY_SEEK_TO
+      Capability.Stop,
+      Capability.Pause,
+      Capability.Play,
     ]
   });
 }
@@ -47,7 +47,7 @@ export async function togglePlayback(state) {
     await TrackPlayer.add(playlistData);
     await TrackPlayer.play();
   } else {
-    if (state === TrackPlayer.STATE_PAUSED) {
+    if (state === State.Paused) {
       await TrackPlayer.play();
     } else {
       await TrackPlayer.pause();

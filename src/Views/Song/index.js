@@ -9,7 +9,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import TrackPlayer, { useTrackPlayerEvents } from 'react-native-track-player'
+import TrackPlayer, { Event, useTrackPlayerEvents } from 'react-native-track-player'
 import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
@@ -36,8 +36,8 @@ function Song({ navigation }) {
   const [trackArtist, setTrackArtist] = useState('');
 
 
-  useTrackPlayerEvents(['playback-track-changed'], async event => {
-    if (event.type === TrackPlayer.TrackPlayerEvents.PLAYBACK_TRACK_CHANGED) {
+  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
+    if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
       const { title, artist, artwork } = track || {};
       setTrackTitle(title);

@@ -31,9 +31,9 @@ module.exports = async function () {
     TrackPlayer.skipToPrevious()
   });
 
-  // TrackPlayer.addEventListener('remote-seek', (value) => {
-  //   TrackPlayer.seekTo(value)
-  // });
+  TrackPlayer.addEventListener('remote-seek', (value) => {
+    TrackPlayer.seekTo(value.position)
+  });
 
   TrackPlayer.addEventListener('remote-stop', () => {
     TrackPlayer.destroy()

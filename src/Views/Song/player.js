@@ -17,7 +17,8 @@ export async function setup() {
     ],
     compactCapabilities: [
       TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE
+      TrackPlayer.CAPABILITY_PAUSE,
+      TrackPlayer.CAPABILITY_SEEK_TO
     ]
   });
 }
@@ -72,10 +73,3 @@ export async function seekTo(seconds) {
     await TrackPlayer.seekTo(seconds);
   } catch (_) { }
 }
-
-export async function getDuration() {
-  try {
-    await TrackPlayer.getDuration;
-  } catch (_) { }
-}
-

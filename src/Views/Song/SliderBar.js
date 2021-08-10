@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native'
-import { useProgress } from 'react-native-track-player'
+import TrackPlayer, { useProgress } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
 
 import { seekTo } from './player.js'
@@ -30,8 +30,8 @@ function SliderBar () {
         maximumValue={duration}
         style={styles.slider}
         thumbTintColor={Colors.WHITE}
-        // onValueChange={() => seekTo(position)}
-        onValueChange={(e) => seekTo(position)}
+        onSlidingComplete={(e) => console.log(e)}
+        // onSlidingComplete={seekTo} // --> To fix!
         tapToSeek={true}
         minimumTrackTintColor={Colors.WHITE}
         maximumTrackTintColor={Colors.GREY_W}

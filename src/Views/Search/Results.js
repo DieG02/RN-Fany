@@ -12,6 +12,8 @@ import Entypo from 'react-native-vector-icons/Entypo'
 
 import { Colors } from '../Stylers'
 import Times from '../../assets/svg/Times'
+import { GOOGLE_API_KEY } from '@env'
+
 
 function Results ({ navigation }) {
 
@@ -19,7 +21,8 @@ function Results ({ navigation }) {
     const isFocused = navigation.isFocused();
     return isFocused && <StatusBar {...props} />
   }
-
+  console.log(GOOGLE_API_KEY);
+  
   return (
     <View style={styles.container}>
       <FocusAwareStatusBar

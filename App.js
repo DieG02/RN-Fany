@@ -34,6 +34,11 @@ function MyTabBar() {
       screenOptions={{
         headerShown: false,
         keyboardHidesTabBar: true,
+        lazy: false,
+        transitionConfig: () => ({
+          containerStyleLight: {},
+          containerStyleDark: {},
+        })
       }}
     >
       <Tab.Screen name='Home' component={Home} />

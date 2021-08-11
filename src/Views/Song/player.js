@@ -1,5 +1,5 @@
 import TrackPlayer, { State, Capability } from 'react-native-track-player';
-import playlistData from './example/playlist.json';
+import playlistData from './playlist.json';
 
 /*
 * function getStateName(state) {

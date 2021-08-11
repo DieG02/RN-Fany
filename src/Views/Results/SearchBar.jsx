@@ -15,6 +15,20 @@ import Times from '../../assets/svg/Times'
 function SearchBar () {
 
   const navigation = useNavigation();
+  const inputRef = useRef();
+  
+  const [value, setValue] = useState('');
+  
+
+
+  const handleFocus = () => {
+    inputRef.current.focus()
+  }
+  const handleOnChange = (string) => {
+    setValue(string)
+  }
+
+
 
   return (
     <View style={styles.searchBar}>
@@ -27,14 +41,20 @@ function SearchBar () {
       </TouchableOpacity>
       <TextInput
         autoFocus
-        // value={value}
+        ref={inputRef}
         style={styles.input}
+        value={value}
+        onChangeText={handleOnChange}
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
+        // onSubmitEditing={search} // --> fetch to API
       />
       <TouchableOpacity
         style={styles.icon}
-        onPress={() => console.log('Empty input')}
+        onPress={() => {
+          handleOnChange('');
+          handleFocus();
+        }}
         activeOpacity={0.1}
       >
         <Times width='20' height='20' color={Colors.LIGHT} />

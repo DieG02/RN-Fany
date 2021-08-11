@@ -19,6 +19,7 @@ import {
   skipToPrevious,
   skipToNext,
 } from './player.js'
+import Data from './Data'
 import Controls from './Controls'
 import SliderBar from './SliderBar'
 import styles from './styles'
@@ -48,14 +49,14 @@ function Song({ navigation }) {
 
   useEffect(() => {
     setup();
-    // togglePlayback(); // -->> Un
+    // togglePlayback(); // -->> Uncomment to auto init
   }, []);
 
  
 
   return (
     <View style={styles.body}>
-      <StatusBar barStyle='light-content'  translucent={true} />
+      <StatusBar barStyle='light-content' translucent={true} />
       <ImageBackground 
         source={{ uri: image }} 
         blurRadius={15} 
@@ -70,13 +71,13 @@ function Song({ navigation }) {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => console.log('Back')}
+          onPress={() => navigation.goBack()}
         >
           <Entypo name="chevron-small-left" size={25} color={Colors.WHITE} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.icon}
-          onPress={() => navigation.navigate('Example')}
+          onPress={() => console.log('Display Menu')}
         >
           <SimpleLineIcons name="menu" size={19} color={Colors.WHITE} />
         </TouchableOpacity>
@@ -85,9 +86,10 @@ function Song({ navigation }) {
       <SafeAreaView style={styles.container}>
         <Image source={{ uri: image }} style={styles.image} />
         <View style={styles.options}>
-          <Text>{trackTitle}</Text>
-          <Text>{trackArtwork}</Text>
-          <Text>{trackArtist}</Text>
+          <Data
+            title={trackTitle}
+            artist={trackArtist}
+          />
           <SliderBar />
           <Controls 
             onNext={skipToNext}
@@ -100,4 +102,4 @@ function Song({ navigation }) {
   )
 }
 
-export default Song;
+export default Song

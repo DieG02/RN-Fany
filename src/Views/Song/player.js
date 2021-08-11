@@ -1,6 +1,22 @@
 import TrackPlayer, { State, Capability } from 'react-native-track-player';
 import playlistData from './example/playlist.json';
 
+/*
+* function getStateName(state) {
+*   switch (state) {
+*     case State.None:
+*       return 'None';
+*     case State.Playing:
+*       return 'Playing';
+*     case State.Paused:
+*       return 'Paused';
+*     case State.Stopped:
+*       return 'Stopped';
+*     case State.Buffering:
+*       return 'Buffering';
+*   }
+* }
+*/
 
 export async function setup() {
   await TrackPlayer.setupPlayer({});
@@ -22,23 +38,6 @@ export async function setup() {
     ]
   });
 }
-
-/*
-* function getStateName(state) {
-*   switch (state) {
-*     case TrackPlayer.STATE_NONE:
-*       return 'None';
-*     case TrackPlayer.STATE_PLAYING:
-*       return 'Playing';
-*     case TrackPlayer.STATE_PAUSED:
-*       return 'Paused';
-*     case TrackPlayer.STATE_STOPPED:
-*       return 'Stopped';
-*     case TrackPlayer.STATE_BUFFERING:
-*       return 'Buffering';
-*   }
-* }
-*/
 
 export async function togglePlayback(state) {
   const currentTrack = await TrackPlayer.getCurrentTrack();

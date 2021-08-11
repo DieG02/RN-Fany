@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import Home from './src/views/Home'
 import Search from './src/views/Search'
-import Results from './src/views/Search/Results'
+import Results from './src/views/Results'
 import Song from './src/views/Song'
 import Footer from './src/components/Footer'
 

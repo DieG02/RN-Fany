@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -8,27 +8,60 @@ import {
 } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+import { asyncFetchSound, asyncLoadSound } from './browser'
 import { Colors, Poppins } from '../Stylers'
-import { asyncLoadSound } from './browser'
+import { setup } from '../Song/player'
 
 function Result(props) {
-//         Artist     Image     Name
+//         Artist         Image     Name     Id
   const { channelTitle, thumbnails, title, videoId } = props;
-  const url = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
+  const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
-  let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...')
+  let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...');
+    
+  const newTrack = {
+    id: '',
+    url: '',
+    title: '',
+    artist: '',
+    artwork: '',
+    duration: 0,
+  };
+
+  const [track, setTrack] = useState(newTrack);
+
+
+  useEffect(() => {
+    async function getResources() {
+      setTrack(newTrack)  // reset state
+
+      const { resource, duration } = await asyncFetchSound(videoId);
+      setTrack({
+        id: videoId,
+        url: resource,
+        title: shortName,
+        artist: channelTitle,
+        artwork: image,
+        duration: Math.round(duration / 1000),
+      })
+    }
+    getResources();
+  }, [videoId])
 
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        disabled={track.url === '' ? true : false}
         style={styles.data}
         delayPressIn={20}
         activeOpacity={0.5}
-        onPress={() => { asyncLoadSound(videoId) }}
+        onPress={() => {
+          console.log(track)
+        }}
       >
         <Image
-          source={{ uri: url }}
+          source={{ uri: image }}
           style={styles.image}
         />
         <View style={{ width: '80%', height: '100%', justifyContent: 'space-around' }}>

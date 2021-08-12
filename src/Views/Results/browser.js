@@ -1,14 +1,25 @@
-
-// https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=faint&key=AIzaSyB0oQg_yzXTiaNox4DZfN2asm7t6boKTbY&maxResults=3
 import ytdl from 'react-native-ytdl'
+import TrackPlayer, { State } from 'react-native-track-player';
 
-export async function asyncLoadSound(id) {
+export async function asyncFetchSound(id) {
   const url = 'https://www.youtube.com/watch?v=' + id
-  const data = await ytdl(url, { quality: 'highestaudio' })
   console.log('Fetching resources...');
-  console.log(data[0].url)
+  const data = await ytdl(url, { quality: 'highestaudio' })
+  const info = await ytdl.getBasicInfo(url, { quality: 'highestaudio' })
+  console.log('Completed!')
+  
+  return {
+    resource: data[0].url,
+    duration: info.formats[0].approxDurationMs
+  }
 }
 
+
+export async function asyncLoadSound(playlistData) {
+  await TrackPlayer.reset();
+  await TrackPlayer.add(playlistData);
+  await TrackPlayer.play(); 
+}
 
 export async function handleOnSubmit(request, setResults) {
   const { base, query, key, max } = request;
@@ -32,3 +43,40 @@ export async function handleOnInfinityScroll () {
       setRequest({ ...request, next: data.nextPageToken })
     })
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
+approxDurationMs": "114149"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114080"
+approxDurationMs": "114149"
+approxDurationMs": "114101"
+approxDurationMs": "114101"
+approxDurationMs": "114101"
+
+
+approxDurationMs": "114080"
+approxDurationMs": "114101"
+approxDurationMs": "114149"
+
+
+      */

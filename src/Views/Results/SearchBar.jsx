@@ -9,16 +9,26 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 import { useNavigation } from '@react-navigation/native'
 
+import {
+  handleOnSubmit
+} from './browser'
 import { Colors, Poppins } from '../Stylers'
 import Times from '../../assets/svg/Times'
+import { GOOGLE_API_KEY } from '@env'
 
-function SearchBar () {
+
+function SearchBar({ setResults }) {
 
   const navigation = useNavigation();
   const inputRef = useRef();
   
   const [value, setValue] = useState('');
-  
+  const [request, setRequest] = useState({
+    base: 'https://youtube.googleapis.com/youtube/v3/search?part=snippet',
+    query: '',
+    key: `&key=${GOOGLE_API_KEY}`,
+    max: '&maxResults=3',
+  })
 
 
   const handleFocus = () => {
@@ -26,7 +36,12 @@ function SearchBar () {
   }
   const handleOnChange = (string) => {
     setValue(string)
+    setRequest({ 
+      ...request, 
+      query: string.replace(/\s+/g, '%20') 
+    })
   }
+
 
 
 
@@ -47,7 +62,7 @@ function SearchBar () {
         onChangeText={handleOnChange}
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
-        // onSubmitEditing={search} // --> fetch to API
+        onSubmitEditing={() => handleOnSubmit(request, setResults)} // --> fetch to API
       />
       <TouchableOpacity
         style={styles.icon}

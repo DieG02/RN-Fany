@@ -12,9 +12,9 @@ import { Colors, Poppins } from '../Stylers'
 
 
 function Result({ data }) {
-  //         Artist       Image      Name
-  const { channelTitle, thumbnails, title } = data;
-
+//         Artist     Image     Name
+  const { channel, thumbnails, title } = data;
+  const url = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
   let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...')
 
@@ -30,12 +30,12 @@ function Result({ data }) {
         }}
       >
         <Image
-          source={{ uri: thumbnails.high.url }}
+          source={{ uri: url }}
           style={styles.image}
         />
         <View style={{ width: '80%', height: '100%', justifyContent: 'space-around' }}>
           <Text style={[styles.title, { color: Colors.WHITE }]}>{shortName}</Text>
-          <Text style={styles.content}>{channelTitle}</Text>
+          <Text style={styles.content}>{channel}</Text>
         </View>
       </TouchableOpacity>
 
@@ -53,7 +53,7 @@ function Result({ data }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.GREY,
+    backgroundColor: 'transparent',
     width: '100%',
     height: 60,
     flexDirection: 'row',

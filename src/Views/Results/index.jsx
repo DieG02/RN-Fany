@@ -10,6 +10,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 
 import SearchBar from './SearchBar'
+import Item from './Item'
 import { Colors } from '../Stylers'
 
 
@@ -21,8 +22,18 @@ function Results({ navigation }) {
     const isFocused = navigation.isFocused();
     return isFocused && <StatusBar {...props} />
   }
-  
-  console.log(results);
+
+  const RenderItem = ({ item: { snippet } }) => {
+    const { channelTitle, thumbnails, title } = snippet;
+    console.log(thumbnails)
+    return <Item 
+      data={{
+        channel: channelTitle,
+        thumbnails: thumbnails,
+        title: title,
+      }}
+    />
+  }
   
   return (
     <View style={styles.container}>
@@ -32,9 +43,17 @@ function Results({ navigation }) {
         barStyle='light-content'
       />
       <SearchBar setResults={setResults} />
-      <FlatList
-        style={styles.list}
-      />
+      {results.length > 0
+        ? <FlatList
+          style={styles.list}
+          contentContainerStyle={{ paddingTop: 20, paddingBottom: 5 }}
+          data={results}
+          renderItem={RenderItem}
+          keyExtractor={(_, index) => index.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+        : <Text>We couldn't find results that match with your search</Text>
+      }
     </View>
   )
 }
@@ -47,11 +66,11 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   list: {
-    backgroundColor: '#0f0',
+    // backgroundColor: Colors.MAIN,
     flex: 1,
     width: '100%',
-    marginTop: 5,
-    marginBottom: 50,
+    marginBottom: 45,
+    paddingHorizontal: 20,
   }
 
 })

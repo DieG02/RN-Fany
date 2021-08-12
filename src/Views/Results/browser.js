@@ -7,7 +7,7 @@ export async function asyncFetchSound(id) {
   const data = await ytdl(url, { quality: 'highestaudio' })
   const info = await ytdl.getBasicInfo(url, { quality: 'highestaudio' })
   console.log('Completed!')
-  
+
   return {
     resource: data[0].url,
     duration: info.formats[0].approxDurationMs
@@ -43,40 +43,3 @@ export async function handleOnInfinityScroll () {
       setRequest({ ...request, next: data.nextPageToken })
     })
 }
-
-
-
-
-
-
-
-
-
-
-/*
-
-approxDurationMs": "114149"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114080"
-approxDurationMs": "114149"
-approxDurationMs": "114101"
-approxDurationMs": "114101"
-approxDurationMs": "114101"
-
-
-approxDurationMs": "114080"
-approxDurationMs": "114101"
-approxDurationMs": "114149"
-
-
-      */

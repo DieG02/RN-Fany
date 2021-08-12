@@ -23,15 +23,15 @@ function Results({ navigation }) {
     return isFocused && <StatusBar {...props} />
   }
 
-  const RenderItem = ({ item: { snippet } }) => {
+  const RenderItem = ({ item: { snippet, id } }) => {
     const { channelTitle, thumbnails, title } = snippet;
-    console.log(thumbnails)
+    const videoId = id.videoId;
+ 
     return <Item 
-      data={{
-        channel: channelTitle,
-        thumbnails: thumbnails,
-        title: title,
-      }}
+      channelTitle={channelTitle}
+      thumbnails={thumbnails}
+      title={title}
+      videoId={videoId}
     />
   }
   

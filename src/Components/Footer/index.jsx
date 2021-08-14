@@ -2,13 +2,15 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import TabBar from './TabBar'
+import Player from './Player'
 import { Colors } from '../Stylers'
 
 export default function Footer({ state, descriptors, navigation, title }) {
   const props = { state, descriptors, navigation, title }
-
+  let display = false;
   return (
-    <View  style={styles.container}>
+    <View style={{ ...styles.container, height: display ? 120 : 45 }}>
+      {display && <Player props={props} />}
       <TabBar props={props} />
     </View>
   )
@@ -20,7 +22,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     backgroundColor: Colors.MAIN,
-    height: 45,
     justifyContent: 'flex-end',
   }
 })

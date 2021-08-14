@@ -13,12 +13,12 @@ import { Colors, Poppins } from '../Stylers'
 import { setup } from '../Song/player'
 
 function Result(props) {
-//         Artist         Image     Name     Id
+  //         Artist         Image     Name     Id
   const { channelTitle, thumbnails, title, videoId } = props;
   const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
   let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...');
-    
+
   const newTrack = {
     id: '',
     url: '',
@@ -27,6 +27,13 @@ function Result(props) {
     artwork: '',
     duration: 0,
   };
+
+  const formatTime = (value) => {
+    const min = Math.trunc(value / 60);
+    const seg = Math.trunc(value % 60);
+    const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
+    return currentText;
+  }
 
   const [track, setTrack] = useState(newTrack);
 
@@ -66,7 +73,7 @@ function Result(props) {
         />
         <View style={{ width: '80%', height: '100%', justifyContent: 'space-around' }}>
           <Text style={[styles.title, { color: Colors.WHITE }]}>{shortName}</Text>
-          <Text style={styles.content}>{channelTitle}</Text>
+          <Text style={styles.content}>{channelTitle}  •  {formatTime(track.duration)}</Text>
         </View>
       </TouchableOpacity>
 

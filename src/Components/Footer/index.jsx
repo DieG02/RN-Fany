@@ -10,7 +10,7 @@ export default function Footer({ state, descriptors, navigation, title }) {
   let display = false;
   return (
     <View style={{ ...styles.container, height: display ? 120 : 45 }}>
-      {display && <Player props={props} />}
+      {display && <Player/>}
       <TabBar props={props} />
     </View>
   )

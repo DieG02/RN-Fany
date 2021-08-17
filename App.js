@@ -1,17 +1,22 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 
+import configureStore from './src/redux/store'
 import Home from './src/views/Home'
 import Search from './src/views/Search'
 import Results from './src/views/Results'
 import Song from './src/views/Song'
 import Footer from './src/components/Footer'
 
-const Stack = createStackNavigator()
-const Tab = createBottomTabNavigator()
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+const store = configureStore();
+
 
 function MySearchStack() {
   return (
@@ -51,16 +56,16 @@ function MyTabBar() {
 
 function App () {
   return (
-    <NavigationContainer>
-      <SafeAreaView style={styles.container}>
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name='MyTabBar' component={MyTabBar} />
-          {/* <Stack.Screen name='Song' component={Song} /> */}
-        </Stack.Navigator>
-      </SafeAreaView>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaView style={styles.container}>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='MyTabBar' component={MyTabBar} />
+            {/* <Stack.Screen name='Song' component={Song} /> */}
+          </Stack.Navigator>
+        </SafeAreaView>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

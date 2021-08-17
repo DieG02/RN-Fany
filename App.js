@@ -1,6 +1,5 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { SafeAreaView, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
@@ -58,23 +57,14 @@ function App () {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <SafeAreaView style={styles.container}>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name='MyTabBar' component={MyTabBar} />
-            {/* <Stack.Screen name='Song' component={Song} /> */}
-          </Stack.Navigator>
-        </SafeAreaView>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='MyTabBar' component={MyTabBar} />
+          {/* <Stack.Screen name='Song' component={Song} /> */}
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ff0000"
-  }
-
-});
 
 export default App

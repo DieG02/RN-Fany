@@ -1,16 +1,20 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { useSelector } from 'react-redux'
 
 import TabBar from './TabBar'
 import Player from './Player'
 import { Colors } from '../Stylers'
 
+
 export default function Footer({ state, descriptors, navigation, title }) {
-  const props = { state, descriptors, navigation, title }
-  let display = false;
+
+  const props = { state, descriptors, navigation, title };
+  const displayPlayer = useSelector(state => state.app.displayPlayer);
+
   return (
-    <View style={{ ...styles.container, height: display ? 120 : 45 }}>
-      {display && <Player/>}
+    <View style={{ ...styles.container, height: displayPlayer ? 120 : 45 }}>
+      {displayPlayer && <Player/>}
       <TabBar props={props} />
     </View>
   )

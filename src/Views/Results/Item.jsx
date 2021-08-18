@@ -13,7 +13,7 @@ import { Colors, Poppins } from '../Stylers'
 import { setup } from '../Song/player'
 
 function Result(props) {
-  //         Artist         Image     Name     Id
+  //         Artist        Image     Name     Id
   const { channelTitle, thumbnails, title, videoId } = props;
   const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");

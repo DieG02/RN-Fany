@@ -2,6 +2,7 @@ import ytdl from 'react-native-ytdl'
 import TrackPlayer, { State } from 'react-native-track-player';
 
 export async function asyncFetchSound(id) {
+  if(id === '') return null;
   const url = 'https://www.youtube.com/watch?v=' + id
   console.log('Fetching resources...');
   const data = await ytdl(url, { quality: 'highestaudio' })

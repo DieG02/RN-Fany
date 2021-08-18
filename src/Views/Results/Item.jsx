@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { useNavigation } from '@react-navigation/native'
 
 import { asyncFetchSound, asyncLoadSound } from './browser'
 import { Colors, Poppins } from '../Stylers'
@@ -36,7 +37,7 @@ function Result(props) {
   }
 
   const [track, setTrack] = useState(newTrack);
-
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function getResources() {
@@ -64,7 +65,7 @@ function Result(props) {
         delayPressIn={20}
         activeOpacity={0.5}
         onPress={() => {
-          console.log(track)
+          navigation.navigate('Song', { track });
         }}
       >
         <Image

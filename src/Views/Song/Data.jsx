@@ -10,7 +10,7 @@ import { Colors, Poppins } from '../Stylers'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 
-function Data ({ title, artist }) {
+function Data({ title, artist, duration }) {
   
   const [favourite, setFavourite] = useState(false);
 
@@ -21,18 +21,18 @@ function Data ({ title, artist }) {
           <MarqueeText
             style={styles.title}
             loop
-            // duration={title.length * 200}
-            duration={75 * 200}
+            duration={title.length * 300}
+            duration={duration}
             marqueeOnStart={true}
             marqueeDelay={1750}
             marqueeResetDelay={1250}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.
+            {title}
           </MarqueeText>
         </View>
         <View style={styles.text}>
           <Text style={styles.artist}>
-            {artist} • Artist
+            Artist  •  {artist} 
           </Text>
         </View>
       </View>

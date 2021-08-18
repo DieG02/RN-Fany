@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import TrackPlayer, { Event, useTrackPlayerEvents } from 'react-native-track-player'
+import TrackPlayer, { usePlaybackState } from 'react-native-track-player'
 import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
@@ -29,26 +29,22 @@ const image = 'https://i.ytimg.com/vi/24C8r8JupYY/hqdefault.jpg';
 const colorsGradient = ['transparent', '#151515', '#000'],
       locationsGradient = [0.6, 0.85, 0.95];
 
-function Song({ navigation }) {
+function Song({ navigation, route }) {
   
-  const [trackTitle, setTrackTitle] = useState('');
-  const [trackArtwork, setTrackArtwork] = useState();
-  const [trackArtist, setTrackArtist] = useState('');
-
-
-  useTrackPlayerEvents([Event.PlaybackTrackChanged], async event => {
-    if (event.type === Event.PlaybackTrackChanged && event.nextTrack != null) {
-      const track = await TrackPlayer.getTrack(event.nextTrack);
-      const { title, artist, artwork } = track || {};
-      setTrackTitle(title);
-      setTrackArtist(artist);
-      setTrackArtwork(artwork);
-    }
-  });
+  const { track } = route.params;
+  const { title, artist, artwork, duration } = track;
 
   useEffect(() => {
     setup();
-    // togglePlayback(); // -->> Uncomment to auto init
+    const asyncAddTrack = async () => {
+      const currentTrack = await TrackPlayer.getCurrentTrack();
+      if (currentTrack == null) {
+        await TrackPlayer.reset();
+        await TrackPlayer.add(track);
+        await TrackPlayer.play();
+      }
+    }
+    asyncAddTrack();
   }, []);
 
  
@@ -57,7 +53,7 @@ function Song({ navigation }) {
     <View style={styles.body}>
       <StatusBar barStyle='light-content' translucent={true} />
       <ImageBackground 
-        source={{ uri: image }} 
+        source={{ uri: artwork }} 
         blurRadius={15} 
         style={styles.imageBackground} 
       />
@@ -83,11 +79,12 @@ function Song({ navigation }) {
       </View>
 
       <SafeAreaView style={styles.container}>
-        <Image source={{ uri: image }} style={styles.image} />
+        <Image source={{ uri: artwork }} style={styles.image} />
         <View style={styles.options}>
           <Data
-            title={trackTitle}
-            artist={trackArtist}
+            title={title}
+            artist={artist}
+            duration={duration}
           />
           <SliderBar />
           <Controls 

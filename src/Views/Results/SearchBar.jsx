@@ -17,8 +17,8 @@ import Times from '../../assets/svg/Times'
 import { GOOGLE_API_KEY } from '@env'
 
 
-function SearchBar({ setResults }) {
-
+function SearchBar({ setResults, showPlayer }) {
+  console.log(showPlayer())
   const navigation = useNavigation();
   const inputRef = useRef();
   
@@ -62,7 +62,10 @@ function SearchBar({ setResults }) {
         onChangeText={handleOnChange}
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
-        onSubmitEditing={() => handleOnSubmit(request, setResults)} // --> fetch to API
+        onSubmitEditing={() => {
+          handleOnSubmit(request, setResults);
+          showPlayer();
+        }} // --> fetch to API
       />
       <TouchableOpacity
         style={styles.icon}

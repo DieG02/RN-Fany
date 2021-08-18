@@ -7,15 +7,17 @@ import {
   Keyboard,
   FlatList,
 } from 'react-native'
+import { connect } from 'react-redux'
 import Entypo from 'react-native-vector-icons/Entypo'
 
 import SearchBar from './SearchBar'
 import Item from './Item'
 import { Colors } from '../Stylers'
+import * as Actions from '../../redux/app/actions'
 
 
-function Results({ navigation }) {
-
+function Results({ navigation, hidePlayer, showPlayer }) {
+  
   const [results, setResults] = useState([]);
 
   const FocusAwareStatusBar = (props) => {
@@ -42,7 +44,7 @@ function Results({ navigation }) {
         backgroundColor='transparent'
         barStyle='light-content'
       />
-      <SearchBar setResults={setResults} />
+      <SearchBar setResults={setResults} showPlayer={showPlayer}/>
       {results.length > 0
         ? <FlatList
           style={styles.list}
@@ -75,4 +77,15 @@ const styles = StyleSheet.create({
 
 })
 
-export default Results
+const mapStateToProps = state => ({
+  displayPlayer: state.app.displayPlayer
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+    hidePlayer: () => dispatch(Actions.hidePlayer()),
+    showPlayer: () => dispatch(Actions.showPlayer()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results)

@@ -8,13 +8,13 @@ const reducer = (state = INITIAL_STATE, action) => {
     case types.SHOW_PLAYER: 
       return {
         ...state,
-        displayPLayer: true,
+        displayPlayer: true,
       }
 
     case types.HIDE_PLAYER: 
       return {
         ...state,
-        displayPLayer: false,
+        displayPlayer: false,
       }
 
     case types.PLAYER_LOADING:

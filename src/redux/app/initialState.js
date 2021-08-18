@@ -1,4 +1,4 @@
 export const INITIAL_STATE = {
-  displayPLayer: false, 
+  displayPlayer: false, 
   isPlayerLoading: false,
 }

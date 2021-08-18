@@ -18,7 +18,7 @@ import { GOOGLE_API_KEY } from '@env'
 
 
 function SearchBar({ setResults, showPlayer }) {
-  console.log(showPlayer())
+  
   const navigation = useNavigation();
   const inputRef = useRef();
   

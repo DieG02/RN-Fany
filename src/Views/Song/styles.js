@@ -5,7 +5,6 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    marginBottom: 50, // --> Delete this line
   },
   imageBackground: {
     position: 'absolute',

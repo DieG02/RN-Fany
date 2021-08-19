@@ -27,8 +27,9 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isPlayerLoading: false,
+        currentTrack: payload,
       }
-
+    
     default: 
       return state;
   }

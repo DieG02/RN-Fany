@@ -12,6 +12,7 @@ export const playerLoading = () => ({
   type: types.PLAYER_LOADING
 })
 
-export const playerLoaded = () => ({
-  type: types.PLAYER_LOADED
+export const playerLoaded = (track) => ({
+  type: types.PLAYER_LOADED,
+  payload: track
 })

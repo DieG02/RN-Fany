@@ -6,35 +6,41 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
+import { connect } from 'react-redux' 
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native'
 
-import { asyncFetchSound, asyncLoadSound } from './browser'
+import { asyncFetchSound } from './browser'
 import { Colors, Poppins } from '../Stylers'
-import { setup } from '../Song/player'
+import * as Actions from '../../redux/app/actions'
 
-function Result(props) {
+
+const formatTime = (value) => {
+  const min = Math.trunc(value / 60);
+  const seg = Math.trunc(value % 60);
+  const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
+  return currentText;
+}
+
+const newTrack = {
+  id: '',
+  url: '',
+  title: '',
+  artist: '',
+  artwork: '',
+  duration: 0,
+};
+
+
+function Item(props) {
+
   //         Artist        Image     Name     Id
   const { channelTitle, thumbnails, title, videoId } = props;
+  const { showPlayer } = props; // Actions
+
   const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
   let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...');
-
-  const newTrack = {
-    id: '',
-    url: '',
-    title: '',
-    artist: '',
-    artwork: '',
-    duration: 0,
-  };
-
-  const formatTime = (value) => {
-    const min = Math.trunc(value / 60);
-    const seg = Math.trunc(value % 60);
-    const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
-    return currentText;
-  }
 
   const [track, setTrack] = useState(newTrack);
   const navigation = useNavigation();
@@ -65,14 +71,16 @@ function Result(props) {
         delayPressIn={20}
         activeOpacity={0.5}
         onPress={() => {
-          navigation.navigate('Song', { track });
+          showPlayer();
+          console.log(track);
+          // navigation.navigate('Song', { track });
         }}
       >
         <Image
           source={{ uri: image }}
           style={styles.image}
         />
-        <View style={{ width: '80%', height: '100%', justifyContent: 'space-around' }}>
+        <View style={styles.textContainer}>
           <Text style={[styles.title, { color: Colors.WHITE }]}>{shortName}</Text>
           <Text style={styles.content}>{channelTitle}  •  {formatTime(track.duration)}</Text>
         </View>
@@ -110,6 +118,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     resizeMode: 'cover'
   },
+  textContainer: {
+    width: '80%', 
+    height: '100%', 
+    justifyContent: 'space-around'
+  },
   title: {
     fontSize: 12,
     fontFamily: Poppins._600,
@@ -118,7 +131,7 @@ const styles = StyleSheet.create({
   },
   content: {
     color: Colors.GREY,
-    fontSize: 11,
+    fontSize: 10,
     marginBottom: 'auto',
   },
   icon: {
@@ -129,7 +142,16 @@ const styles = StyleSheet.create({
   },
 })
 
+const mapStateToProps = state => ({
+  displayPlayer: state.app.displayPlayer
+})
 
-export default Result
+const mapDispatchToProps = dispatch => {
+  return {
+    hidePlayer: () => dispatch(Actions.hidePlayer()),
+    showPlayer: () => dispatch(Actions.showPlayer()),
+  }
+}
 
+export default connect(mapStateToProps, mapDispatchToProps)(Item)
 

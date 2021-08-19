@@ -9,10 +9,10 @@ export const hidePlayer = () => ({
 })
 
 export const playerLoading = () => ({
-  type: types.PLAYER_LOADING
+  type: types.PLAYER_LOADING,
 })
 
 export const playerLoaded = (track) => ({
   type: types.PLAYER_LOADED,
-  payload: track
+  payload: track,
 })

@@ -36,7 +36,7 @@ function Item(props) {
 
   //         Artist        Image     Name     Id
   const { channelTitle, thumbnails, title, videoId } = props;
-  const { showPlayer } = props; // Actions
+  const { showPlayer, playerLoading, playerLoaded, isPlayerLoading } = props; // Actions
 
   const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
@@ -44,11 +44,12 @@ function Item(props) {
 
   const [track, setTrack] = useState(newTrack);
   const navigation = useNavigation();
+  console.log(isPlayerLoading)
 
   useEffect(() => {
     async function getResources() {
       setTrack(newTrack)  // reset state
-
+      playerLoading();
       const { resource, duration } = await asyncFetchSound(videoId);
       setTrack({
         id: videoId,
@@ -63,6 +64,8 @@ function Item(props) {
   }, [videoId])
 
 
+  if (track.url !== '') playerLoaded(track);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -72,7 +75,7 @@ function Item(props) {
         activeOpacity={0.5}
         onPress={() => {
           showPlayer();
-          console.log(track);
+          console.log(track)
           // navigation.navigate('Song', { track });
         }}
       >
@@ -82,7 +85,7 @@ function Item(props) {
         />
         <View style={styles.textContainer}>
           <Text style={[styles.title, { color: Colors.WHITE }]}>{shortName}</Text>
-          <Text style={styles.content}>{channelTitle}  •  {formatTime(track.duration)}</Text>
+          <Text style={styles.content}>{channelTitle}  •  {isPlayerLoading ? 'Loading' : formatTime(track.duration)}</Text>
         </View>
       </TouchableOpacity>
 
@@ -143,13 +146,14 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  displayPlayer: state.app.displayPlayer
-})
+  isPlayerLoading: state.app.isPlayerLoading,
+});
 
 const mapDispatchToProps = dispatch => {
   return {
-    hidePlayer: () => dispatch(Actions.hidePlayer()),
     showPlayer: () => dispatch(Actions.showPlayer()),
+    playerLoading: () => dispatch(Actions.playerLoading()),
+    playerLoaded: (e) => dispatch(Actions.playerLoaded(e)),
   }
 }
 

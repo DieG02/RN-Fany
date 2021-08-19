@@ -19,6 +19,7 @@ const sound = {
 
 export default function Player() {
 
+  // const { artwork, title, artist, duration, url } = track;
   const { image, title, artist, duration } = sound;
   
   const navigation = useNavigation();
@@ -31,7 +32,6 @@ export default function Player() {
   }
   const [favourite, setFavourite] = useState(false);
   const [playing, setPlaying] = useState(false);
-
 
   return (
     <View style={styles.container}>

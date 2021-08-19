@@ -9,12 +9,13 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './styles'
 import CircleItem from './CircleItem'
 import SquareItem from './SquareItem'
 import SvgHome from '../../assets/svg/Home'
+import * as Actions from '../../redux/app/actions'
 
 
 // const colorsGradient = ['#404040', '#303030', '#1F1F1F', '#0F0F0F', '#000'], 
@@ -37,7 +38,7 @@ function Home({ navigation }) {
     return <SquareItem src={item}/>
   }
 
-  const displayPlayer = useSelector(state => state.app.displayPlayer) 
+  const displayPlayer = useSelector(state => state.app.displayPlayer); 
 
 
   return (

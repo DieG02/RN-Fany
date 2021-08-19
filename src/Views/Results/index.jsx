@@ -13,10 +13,9 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import SearchBar from './SearchBar'
 import Item from './Item'
 import { Colors } from '../Stylers'
-import * as Actions from '../../redux/app/actions'
 
 
-function Results({ navigation, hidePlayer, showPlayer }) {
+function Results({ navigation }) {
   
   const [results, setResults] = useState([]);
 
@@ -44,7 +43,7 @@ function Results({ navigation, hidePlayer, showPlayer }) {
         backgroundColor='transparent'
         barStyle='light-content'
       />
-      <SearchBar setResults={setResults} showPlayer={showPlayer}/>
+      <SearchBar setResults={setResults} />
       {results.length > 0
         ? <FlatList
           style={styles.list}
@@ -81,11 +80,6 @@ const mapStateToProps = state => ({
   displayPlayer: state.app.displayPlayer
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    hidePlayer: () => dispatch(Actions.hidePlayer()),
-    showPlayer: () => dispatch(Actions.showPlayer()),
-  }
-}
+const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results)

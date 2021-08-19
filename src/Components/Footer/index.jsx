@@ -11,7 +11,6 @@ export default function Footer({ state, descriptors, navigation, title }) {
 
   const props = { state, descriptors, navigation, title };
   const displayPlayer = useSelector(state => state.app.displayPlayer);
-
   return (
     <View style={{ ...styles.container, height: displayPlayer ? 120 : 45 }}>
       {displayPlayer && <Player/>}

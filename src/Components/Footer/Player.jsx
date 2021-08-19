@@ -5,34 +5,56 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native'
+import { useSelector } from 'react-redux'
+import TrackPlayer, { RepeatMode, State, usePlaybackState } from 'react-native-track-player'
 import MarqueeText from 'react-native-marquee'
 import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const sound = {
-  image: 'https://i.ytimg.com/vi/aWmkuH1k7uA/hqdefault.jpg',
-  title: 'Nirvana - All Apologies (MTV Unplugged)',
-  artist: 'Nirvana',
-  duration: 219 // secs.
+import { setup } from '../../views/Song/player'
+
+
+const formatTime = (value) => {
+  const min = Math.trunc(value / 60);
+  const seg = Math.trunc(value % 60);
+  const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
+  return currentText;
+}
+const tooglePlayback = async (state) => {
+  if (state === State.Paused) {
+    await TrackPlayer.play();
+  } else {
+    await TrackPlayer.pause();
+  }
 }
 
 export default function Player() {
-
-  const { image, title, artist, duration } = sound;
   
-  const navigation = useNavigation();
 
-  const formatTime = (value) => {
-    const min = Math.trunc(value / 60);
-    const seg = Math.trunc(value % 60);
-    const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
-    return currentText;
-  }
   const [favourite, setFavourite] = useState(false);
   const [playing, setPlaying] = useState(false);
 
+  const navigation = useNavigation();
+  const state = usePlaybackState();
+  const track = useSelector(state => state.app.currentTrack);
+  const { id, url, title, artist, artwork, duration } = track;
+  console.log(track)
+  useEffect(() => {
+    setup();
+    const asyncAddTrack = async () => {
+      const currentTrack = await TrackPlayer.getCurrentTrack();
+      if (currentTrack == null) {
+        await TrackPlayer.reset();
+        await TrackPlayer.add(track);
+        TrackPlayer.setRepeatMode(RepeatMode.Queue)
+        await TrackPlayer.play();
+      }
+    }
+    asyncAddTrack();
+  }, [id]);
 
+  if (!track) return null;
   return (
     <View style={styles.container}>
 
@@ -41,11 +63,12 @@ export default function Player() {
         delayPressIn={10}
         activeOpacity={0.5}
         onPress={() => {
-          navigation.navigate('Song')
+          // navigation.navigate('Song')
+          console.log(track);
         }}
       >
         <Image
-          source={{ uri: image }}
+          source={{ uri: artwork }}
           style={{ width: 75, height: 74 }}
         />
 
@@ -91,13 +114,11 @@ export default function Player() {
       <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={styles.icons}
-          onPress={() => {
-            setPlaying(!playing)
-          }}
+          onPress={() => tooglePlayback(state)}
         >
-          {playing
-            ? <Ionicons name='pause' size={28} color='#FFF' />
-            : <Ionicons name='play' size={28} color='#FFF' />
+          {state === State.Paused
+            ? <Ionicons name='play' size={28} color='#FFF' />
+            : <Ionicons name='pause' size={28} color='#FFF' />
           }
         </TouchableOpacity>
       </View>

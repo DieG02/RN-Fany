@@ -25,7 +25,6 @@ import styles from './styles'
 import { Colors } from '../Stylers'
 
 
-const image = 'https://i.ytimg.com/vi/24C8r8JupYY/hqdefault.jpg';
 const colorsGradient = ['transparent', '#151515', '#000'],
       locationsGradient = [0.6, 0.85, 0.95];
 

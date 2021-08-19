@@ -17,7 +17,7 @@ import Times from '../../assets/svg/Times'
 import { GOOGLE_API_KEY } from '@env'
 
 
-function SearchBar({ setResults, showPlayer }) {
+function SearchBar({ setResults }) {
   
   const navigation = useNavigation();
   const inputRef = useRef();
@@ -64,7 +64,6 @@ function SearchBar({ setResults, showPlayer }) {
         placeholderTextColor={Colors.GREY}
         onSubmitEditing={() => {
           handleOnSubmit(request, setResults);
-          showPlayer();
         }} // --> fetch to API
       />
       <TouchableOpacity

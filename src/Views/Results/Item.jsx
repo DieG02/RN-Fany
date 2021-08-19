@@ -6,12 +6,30 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
+import { connect } from 'react-redux'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native'
 
 import { asyncFetchSound, asyncLoadSound } from './browser'
 import { Colors, Poppins } from '../Stylers'
-import { setup } from '../Song/player'
+import * as Actions from '../../redux/app/actions'
+
+
+const newTrack = {
+  id: '',
+  url: '',
+  title: '',
+  artist: '',
+  artwork: '',
+  duration: 0,
+};
+
+const formatTime = (value) => {
+  const min = Math.trunc(value / 60);
+  const seg = Math.trunc(value % 60);
+  const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
+  return currentText;
+}
 
 function Result(props) {
   //         Artist        Image     Name     Id
@@ -20,24 +38,10 @@ function Result(props) {
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");
   let shortName = name.length < 65 ? name : name.slice(0, 65).concat('...');
 
-  const newTrack = {
-    id: '',
-    url: '',
-    title: '',
-    artist: '',
-    artwork: '',
-    duration: 0,
-  };
-
-  const formatTime = (value) => {
-    const min = Math.trunc(value / 60);
-    const seg = Math.trunc(value % 60);
-    const currentText = min + ':' + (seg < 10 ? '0' + seg : seg);
-    return currentText;
-  }
-
   const [track, setTrack] = useState(newTrack);
   const navigation = useNavigation();
+
+  const { showPlayer } = props;
 
   useEffect(() => {
     async function getResources() {
@@ -65,7 +69,9 @@ function Result(props) {
         delayPressIn={20}
         activeOpacity={0.5}
         onPress={() => {
-          navigation.navigate('Song', { track });
+          console.log(track)
+          showPlayer(track);
+          // navigation.navigate('Song', { track });
         }}
       >
         <Image
@@ -130,6 +136,13 @@ const styles = StyleSheet.create({
 })
 
 
-export default Result
+// export default Result
+
+const mapStateToProps = null;
+const mapDispatchToProps = dispatch => ({
+  showPlayer: payload => dispatch(Actions.showPlayer(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Result);
 
 

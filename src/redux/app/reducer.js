@@ -9,25 +9,16 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         displayPlayer: true,
+        currentTrack: payload,
       }
 
     case types.HIDE_PLAYER: 
       return {
         ...state,
         displayPlayer: false,
+        currentTrack: {}
       }
 
-    case types.PLAYER_LOADING:
-      return {
-        ...state,
-        isPlayerLoading: true,
-      }
-
-    case types.PLAYER_LOADED:
-      return {
-        ...state,
-        isPlayerLoading: false,
-      }
 
     default: 
       return state;

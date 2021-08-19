@@ -21,7 +21,7 @@ function Data({ title, artist, duration }) {
           <MarqueeText
             style={styles.title}
             loop
-            duration={title.length * 300}
+            duration={title ? title.length * 250 : 3000}
             duration={duration}
             marqueeOnStart={true}
             marqueeDelay={1750}

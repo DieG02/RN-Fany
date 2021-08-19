@@ -30,8 +30,7 @@ function SliderBar () {
         maximumValue={duration}
         style={styles.slider}
         thumbTintColor={Colors.WHITE}
-        onSlidingComplete={(e) => console.log(e)}
-        // onSlidingComplete={seekTo} // --> To fix!
+        onSlidingComplete={seekTo}
         tapToSeek={true}
         minimumTrackTintColor={Colors.WHITE}
         maximumTrackTintColor={Colors.GREY_W}
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.LIGHT,
-    fontFamily: Poppins._300,
-    fontSize: 12,
+    fontFamily: Poppins._400,
+    fontSize: 11,
   }
 })
 

@@ -1,8 +1,11 @@
 # Fany
 ### _Enjoy music in a different way_
+
 Fany is a streaming music reproductor based on Spotify's user interface and Youtube's content
+<br/>
 Allows to user enjoy all videos, clips, songs as audio player
-Support background-mode and off-mode, offline-storage coming soon
+<br/>
+Support background-mode and off-mode, offline-storage coming soon &nbsp;
 
 - Android OS (only)
 - Medium size (around 15MB)
@@ -17,7 +20,9 @@ Support background-mode and off-mode, offline-storage coming soon
 - Background-mode, Off-mode
 - Filter by artist (coming soon)
 
-And much more related to customize your experience, for example repeat-mode, change main colors, songs' data, etc.
+And much more related to customize your experience;
+<br/>
+For example repeat-mode, change main colors, songs' data, etc.
 
 ## Tech
 
@@ -26,15 +31,13 @@ Fany uses differents technologies to work properly:
 - [React](https://reactjs.org/)  create components, life-cycle, and more
 - [React Native](https://reactnative.dev/)  React for mobile development
 - [Redux](https://reactnative.dev/)  control global state in a single store
-- [Sagas](https://reactnative.dev/)  middleware to control state uploadings
-- [Firebase](https://reactnative.dev/)  server and database
-
+- [Saga](https://redux-saga.js.org/)  middleware to control state uploadings
+- [Firebase](https://firebase.google.com/)  server and database
 
 ## Installation
 
 Fany requires [Node.js](https://nodejs.org/) v16+ to run.
-
-
+<br/>
 Install the dependencies and start the Metro server.
 
 ```sh
@@ -57,8 +60,8 @@ Finally, if all it's OK, it has to look like this :)
 <img src="https://i.ibb.co/1GCGcGB/Screenshot-2021-08-23-17-02-27-914-lockscreen.jpg" height="450">
 </div>
 
-
-*This project is made entirely for academic purposes*
+<br/>
+*projects is made entirely for academic purposes, any inappropriate use of it is the responsibility of each one*
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import {
   View,
   StyleSheet,
@@ -9,41 +9,38 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 import { useNavigation } from '@react-navigation/native'
 
-import {
-  handleOnSubmit
-} from './browser'
+import { handleOnSubmit } from './browser'
 import { Colors, Poppins } from '../Stylers'
 import Times from '../../assets/svg/Times'
+import { SearchContext } from '../../context/SearchContext'
 import { GOOGLE_API_KEY } from '@env'
 
 
-function SearchBar({ setResults }) {
+function SearchBar() {
   
   const navigation = useNavigation();
   const inputRef = useRef();
-  
-  const [value, setValue] = useState('');
-  const [request, setRequest] = useState({
-    base: 'https://youtube.googleapis.com/youtube/v3/search?part=snippet',
-    query: '',
-    key: `&key=${GOOGLE_API_KEY}`,
-    max: '&maxResults=3',
-  })
-
-
   const handleFocus = () => {
     inputRef.current.focus()
   }
+  
+  const { setResults } = useContext(SearchContext);
+
+  const [params, setParams] = useState({ 
+    title: '',
+    query: '',
+    base: 'https://youtube.googleapis.com/youtube/v3/search?part=snippet',
+    key: `&key=${GOOGLE_API_KEY}`,
+    max: '&maxResults=3', 
+  });
 
   const handleOnChange = (string) => {
-    setValue(string)
-    setRequest({ 
-      ...request, 
+    setParams({ 
+      ...params, 
+      title: string,
       query: string.replace(/\s+/g, '%20') 
     })
   }
-
-
 
   return (
     <View style={styles.searchBar}>
@@ -58,12 +55,12 @@ function SearchBar({ setResults }) {
         autoFocus
         ref={inputRef}
         style={styles.input}
-        value={value}
+        value={params.title}
         onChangeText={handleOnChange}
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
         onSubmitEditing={() => {
-          handleOnSubmit(request, setResults);
+          handleOnSubmit(params, setResults);
         }} // --> fetch to API
       />
       <TouchableOpacity

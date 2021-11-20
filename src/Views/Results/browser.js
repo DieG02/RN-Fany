@@ -1,5 +1,5 @@
 import ytdl from 'react-native-ytdl'
-import TrackPlayer, { State } from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 
 export async function asyncFetchSound(id) {
   if(id === '') return null;
@@ -22,8 +22,8 @@ export async function asyncLoadSound(playlistData) {
   await TrackPlayer.play(); 
 }
 
-export async function handleOnSubmit(request, setResults) {
-  const { base, query, key, max } = request;
+export async function handleOnSubmit(params, setResults) {
+  const { base, query, key, max } = params;
   const req = `${base}&q=${query}${key}${max}`;
   const response = await fetch(req)
   .then(res => res.json())

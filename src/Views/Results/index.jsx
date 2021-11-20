@@ -1,22 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   StatusBar,
-  Keyboard,
   FlatList,
 } from 'react-native'
-import Entypo from 'react-native-vector-icons/Entypo'
 
 import SearchBar from './SearchBar'
 import Item from './Item'
 import { Colors } from '../Stylers'
+import { SearchContext } from '../../context/SearchContext'
 
 
 function Results({ navigation }) {
-  
-  const [results, setResults] = useState([]);
+
+  const { results } = useContext(SearchContext);
 
   const FocusAwareStatusBar = (props) => {
     const isFocused = navigation.isFocused();
@@ -42,7 +41,7 @@ function Results({ navigation }) {
         backgroundColor='transparent'
         barStyle='light-content'
       />
-      <SearchBar setResults={setResults}/>
+      <SearchBar />
       {results.length > 0
         ? <FlatList
           style={styles.list}

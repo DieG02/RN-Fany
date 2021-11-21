@@ -6,23 +6,25 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import MarqueeText from 'react-native-marquee'
-import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import TrackPlayer, { State, usePlaybackState } from 'react-native-track-player'
+import { asyncLoadSound } from '../../views/Results/browser'
+import { togglePlayback } from '../../views/Song/player'
 
-const sound = {
-  image: 'https://i.ytimg.com/vi/aWmkuH1k7uA/hqdefault.jpg',
-  title: 'Nirvana - All Apologies (MTV Unplugged)',
-  artist: 'Nirvana',
-  duration: 219 // secs.
-}
+export default function Player({ track }) {
 
-export default function Player() {
+  const { artwork, title, artist, duration, url } = track;
+  const playbackState = usePlaybackState();
 
-  // const { artwork, title, artist, duration, url } = track;
-  const { image, title, artist, duration } = sound;
-  
-  const navigation = useNavigation();
+  let toggleIcon = 'play';
+
+  if (
+    playbackState === State.Playing ||
+    playbackState === State.Buffering
+  ) {
+    toggleIcon = 'pause';
+  }
 
   const formatTime = (value) => {
     const min = Math.trunc(value / 60);
@@ -31,7 +33,10 @@ export default function Player() {
     return currentText;
   }
   const [favourite, setFavourite] = useState(false);
-  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    asyncLoadSound(track)
+  }, [track])
 
   return (
     <View style={styles.container}>
@@ -40,12 +45,9 @@ export default function Player() {
         style={styles.song}
         delayPressIn={10}
         activeOpacity={0.5}
-        onPress={() => {
-          navigation.navigate('Song')
-        }}
       >
         <Image
-          source={{ uri: image }}
+          source={{ uri: artwork }}
           style={{ width: 75, height: 74 }}
         />
 
@@ -82,8 +84,8 @@ export default function Player() {
           }}
         >
           {favourite
-            ? <AntDesign name="heart" size={20} color="#3a86fc" />
-            : <AntDesign name="hearto" size={20} color="#999" />
+            ? <AntDesign name='heart' size={20} color='#3a86fc' />
+            : <AntDesign name='hearto' size={20} color='#999' />
           }
         </TouchableOpacity>
       </View>
@@ -91,13 +93,11 @@ export default function Player() {
       <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={styles.icons}
-          onPress={() => {
-            setPlaying(!playing)
-          }}
+          onPress={() => togglePlayback(playbackState)}
         >
-          {playing
-            ? <Ionicons name='pause' size={28} color='#FFF' />
-            : <Ionicons name='play' size={28} color='#FFF' />
+          {toggleIcon === 'play'
+            ? <Ionicons name='play' size={28} color='#FFF' />
+            : <Ionicons name='pause' size={28} color='#FFF' />
           }
         </TouchableOpacity>
       </View>

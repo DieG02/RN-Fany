@@ -8,7 +8,6 @@ export async function asyncFetchSound(id) {
   const data = await ytdl(url, { quality: 'highestaudio' })
   const info = await ytdl.getBasicInfo(url, { quality: 'highestaudio' })
   console.log('Completed!')
-
   return {
     resource: data[0].url,
     duration: info.formats[0].approxDurationMs

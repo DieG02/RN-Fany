@@ -1,12 +1,10 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import SearchProvider from './src/context/SearchContext'
 import SongProvider from './src/context/SongContext'
 
-import configureStore from './src/redux/store'
 import Home from './src/views/Home'
 import Search from './src/views/Search'
 import Results from './src/views/Results'
@@ -16,8 +14,6 @@ import Footer from './src/components/Footer'
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const store = configureStore();
-
 
 function MySearchStack() {
   return (
@@ -57,19 +53,17 @@ function MyTabBar() {
 
 function App () {
   return (
-    <Provider store={store}>
-      <SearchProvider>
-        <SongProvider>
-          <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name='MyTabBar' component={MyTabBar} />
-              <Stack.Screen name='Song' component={Song} />
-            </Stack.Navigator>
-          </NavigationContainer>
+    <SearchProvider>
+      <SongProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='MyTabBar' component={MyTabBar} />
+            <Stack.Screen name='Song' component={Song} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </SongProvider> 
-     </SearchProvider> 
-    </Provider>
-  );
+    </SearchProvider> 
+  );  
 };
 
 

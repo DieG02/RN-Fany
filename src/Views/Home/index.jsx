@@ -63,7 +63,7 @@ function Home({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.artists}>
-          <Text style={styles.subtitle}>My favourite artists</Text>
+          <Text style={styles.subtitle}>Top 10 artists</Text>
           <FlatList
             contentContainerStyle={{ alignSelf: 'flex-end' }}
             data={artists}
@@ -88,35 +88,6 @@ function Home({ navigation }) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-        <View style={styles.recents}>
-          <Text style={styles.subtitle}>Recents</Text>
-          <FlatList
-            contentContainerStyle={{ 
-              alignSelf: 'flex-end', 
-              paddingHorizontal: 5
-            }}
-            data={artists}
-            renderItem={RenderSquare}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={styles.recents}>
-          <Text style={styles.subtitle}>Recents</Text>
-          <FlatList
-            contentContainerStyle={{ 
-              alignSelf: 'flex-end', 
-              paddingHorizontal: 5
-            }}
-            data={artists}
-            renderItem={RenderSquare}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-
         <View style={styles.playlists}>
           <Text style={styles.subtitle}>My playlists</Text>
           <FlatList

@@ -1,4 +1,0 @@
-export const SHOW_PLAYER = 'SHOW_PLAYER';
-export const HIDE_PLAYER = 'HIDE_PLAYER';
-export const PLAYER_LOADING = 'PLAYER_LOADING';
-export const PLAYER_LOADED = 'PLAYER_LOADED';

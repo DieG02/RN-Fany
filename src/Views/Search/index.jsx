@@ -44,10 +44,6 @@ function Search ({ navigation }) {
           <AntDesign name="search1" size={19} color='#444' style={styles.icon} />
           <Text style={styles.content}>Enter name or URL</Text>
         </Pressable>
-        <Text style={styles.subtitle}>History</Text>
-        <Text style={styles.auxiliar}>
-          You do not have recent searches
-        </Text>
       </SafeAreaView>
     </View>
   )

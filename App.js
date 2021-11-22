@@ -11,7 +11,6 @@ import Results from './src/views/Results'
 import Song from './src/views/Song'
 import Footer from './src/components/Footer'
 
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   View,
   Image,
@@ -8,16 +8,16 @@ import {
   ImageBackground,
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import TrackPlayer, { usePlaybackState } from 'react-native-track-player'
 import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
 import {
+  addTrack,
   setup,
   togglePlayback,
   skipToPrevious,
   skipToNext,
-} from './player.js'
+} from '../../context/controls.js'
 import Data from './Data'
 import Controls from './Controls'
 import SliderBar from './SliderBar'
@@ -25,29 +25,17 @@ import styles from './styles'
 import { Colors } from '../Stylers'
 
 
-const image = 'https://i.ytimg.com/vi/24C8r8JupYY/hqdefault.jpg';
 const colorsGradient = ['transparent', '#151515', '#000'],
       locationsGradient = [0.6, 0.85, 0.95];
 
 function Song({ navigation, route }) {
-  
   const { track } = route.params;
   const { title, artist, artwork, duration } = track;
 
   useEffect(() => {
     setup();
-    const asyncAddTrack = async () => {
-      const currentTrack = await TrackPlayer.getCurrentTrack();
-      if (currentTrack == null) {
-        await TrackPlayer.reset();
-        await TrackPlayer.add(track);
-        await TrackPlayer.play();
-      }
-    }
-    asyncAddTrack();
+    addTrack(track);
   }, []);
-
- 
 
   return (
     <View style={styles.body}>

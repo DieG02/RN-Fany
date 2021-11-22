@@ -9,7 +9,6 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo'
 import { useNavigation } from '@react-navigation/native'
 
-import { handleOnSubmit } from './browser'
 import { Colors, Poppins } from '../Stylers'
 import Times from '../../assets/svg/Times'
 import { SearchContext } from '../../context/SearchContext'
@@ -24,7 +23,7 @@ function SearchBar() {
     inputRef.current.focus()
   }
   
-  const { setResults } = useContext(SearchContext);
+  const { searchResults } = useContext(SearchContext);
 
   const [params, setParams] = useState({ 
     title: '',
@@ -60,7 +59,7 @@ function SearchBar() {
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
         onSubmitEditing={() => {
-          handleOnSubmit(params, setResults);
+          searchResults(params);
         }} // --> fetch to API
       />
       <TouchableOpacity

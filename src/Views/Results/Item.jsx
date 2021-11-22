@@ -8,9 +8,9 @@ import {
 } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
-import { asyncFetchSound } from './browser'
 import { Colors, Poppins } from '../Stylers'
 import { SongContext } from '../../context/SongContext'
+import { SearchContext } from '../../context/SearchContext'
 
 
 const formatTime = (value) => {
@@ -41,11 +41,12 @@ function Item(props) {
 
   const [track, setTrack] = useState(newTrack);
   const { setSong } = useContext(SongContext);
+  const { getSound } = useContext(SearchContext);
 
   useEffect(() => {
     async function getResources() {
       setTrack(newTrack)  // reset state
-      const { resource, duration } = await asyncFetchSound(videoId);
+      const { resource, duration } = await getSound(videoId);
       setTrack({
         id: videoId,
         url: resource,

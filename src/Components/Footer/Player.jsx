@@ -8,10 +8,8 @@ import {
 import MarqueeText from 'react-native-marquee'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import TrackPlayer, { State, usePlaybackState } from 'react-native-track-player'
-import { asyncLoadSound } from '../../views/Results/browser'
-import { togglePlayback } from '../../views/Song/player'
-
+import { State, usePlaybackState } from 'react-native-track-player'
+import { addTrack, togglePlayback } from '../../context/controls.js'
 export default function Player({ track }) {
 
   const { artwork, title, artist, duration, url } = track;
@@ -35,7 +33,7 @@ export default function Player({ track }) {
   const [favourite, setFavourite] = useState(false);
 
   useEffect(() => {
-    asyncLoadSound(track)
+    addTrack(track)
   }, [track])
 
   return (

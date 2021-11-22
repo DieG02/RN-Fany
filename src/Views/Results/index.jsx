@@ -2,19 +2,17 @@ import React, { useContext } from 'react'
 import {
   View,
   Text,
-  StyleSheet,
   StatusBar,
   FlatList,
 } from 'react-native'
 
 import SearchBar from './SearchBar'
 import Item from './Item'
-import { Colors } from '../Stylers'
+import styles from './styles'
 import { SearchContext } from '../../context/SearchContext'
 
 
 function Results({ navigation }) {
-
   const { results } = useContext(SearchContext);
 
   const FocusAwareStatusBar = (props) => {
@@ -51,27 +49,12 @@ function Results({ navigation }) {
           keyExtractor={(_, index) => index.toString()}
           showsVerticalScrollIndicator={false}
         />
-        : <Text>We couldn't find results that match with your search</Text>
+        : <View style={styles.warning}>
+            <Text>No results to display</Text>
+          </View>
       }
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'flex-start',
-    backgroundColor: Colors.BLACK,
-    width: '100%',
-  },
-  list: {
-    // backgroundColor: Colors.MAIN,
-    flex: 1,
-    width: '100%',
-    marginBottom: 45,
-    paddingHorizontal: 20,
-  }
-
-})
 
 export default Results

@@ -1,4 +1,4 @@
-import TrackPlayer, { State, Capability } from 'react-native-track-player';
+import TrackPlayer, { State, Capability, RepeatMode } from 'react-native-track-player';
 
 /*
 * function getStateName(state) {
@@ -40,12 +40,10 @@ export async function setup() {
 
 
 export async function addTrack (track) {
-  const currentTrack = await TrackPlayer.getCurrentTrack();
-  if (currentTrack == null) {
-    await TrackPlayer.reset();
-    await TrackPlayer.add(track);
-    await TrackPlayer.play();
-  }
+  TrackPlayer.reset();
+  TrackPlayer.add(track);
+  await TrackPlayer.setRepeatMode(RepeatMode.Track)
+  TrackPlayer.play();
 }
 
 export async function togglePlayback(state) {

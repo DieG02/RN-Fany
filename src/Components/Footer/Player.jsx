@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import {
   View,
   Image,
@@ -9,10 +9,14 @@ import MarqueeText from 'react-native-marquee'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { State, usePlaybackState } from 'react-native-track-player'
-import { addTrack, togglePlayback } from '../../context/controls.js'
-export default function Player({ track }) {
+import { setup, addTrack, togglePlayback } from '../../context/controls.js'
 
-  const { artwork, title, artist, duration, url } = track;
+import { SongContext } from '../../context/SongContext'
+
+export default function Player() {
+
+  const { song } = useContext(SongContext);
+  const { artwork, title, artist, duration } = song;
   const playbackState = usePlaybackState();
 
   let toggleIcon = 'play';
@@ -33,8 +37,9 @@ export default function Player({ track }) {
   const [favourite, setFavourite] = useState(false);
 
   useEffect(() => {
-    addTrack(track)
-  }, [track])
+    setup();
+    addTrack(song)
+  }, [song])
 
   return (
     <View style={styles.container}>

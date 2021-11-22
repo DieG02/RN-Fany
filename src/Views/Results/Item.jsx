@@ -79,14 +79,6 @@ function Item(props) {
           <Text style={styles.content}>{channelTitle}  •  {track.duration > 0 ? formatTime(track.duration) : 'Calculando' }</Text>
         </View>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.icon}
-        activeOpacity={0.2}
-        onPress={() => console.log('Add to playlist')}
-      >
-        <AntDesign name="plus" size={20} color={Colors.GREY} />
-      </TouchableOpacity>
     </View>
   )
 }

@@ -12,7 +12,6 @@ import { useNavigation } from '@react-navigation/native'
 import { Colors, Poppins } from '../Stylers'
 import Times from '../../assets/svg/Times'
 import { SearchContext } from '../../context/SearchContext'
-import { GOOGLE_API_KEY } from '@env'
 
 
 function SearchBar() {
@@ -25,20 +24,9 @@ function SearchBar() {
   
   const { searchResults } = useContext(SearchContext);
 
-  const [params, setParams] = useState({ 
-    title: '',
-    query: '',
-    base: 'https://youtube.googleapis.com/youtube/v3/search?part=snippet',
-    key: `&key=${GOOGLE_API_KEY}`,
-    max: '&maxResults=3', 
-  });
-
+  const [value, setValue] = useState('');
   const handleOnChange = (string) => {
-    setParams({ 
-      ...params, 
-      title: string,
-      query: string.replace(/\s+/g, '%20') 
-    })
+    setValue(string)
   }
 
   return (
@@ -54,12 +42,12 @@ function SearchBar() {
         autoFocus
         ref={inputRef}
         style={styles.input}
-        value={params.title}
+        value={value}
         onChangeText={handleOnChange}
         placeholder='Enter name or URL'
         placeholderTextColor={Colors.GREY}
-        onSubmitEditing={() => {
-          searchResults(params);
+        onSubmitEditing={({ nativeEvent }) => {
+          searchResults(nativeEvent.text);
         }} // --> fetch to API
       />
       <TouchableOpacity

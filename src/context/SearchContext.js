@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import ytdl from 'react-native-ytdl'
+import { GOOGLE_API_KEY } from '@env'
 
 //Create Context
 export const SearchContext = createContext();
@@ -8,16 +9,22 @@ export const SearchContext = createContext();
 const SearchProvider = (props) => {
   const [results, setResults] = useState([]);
 
+  const params = {
+    api: 'https://youtube.googleapis.com/youtube/v3/search?part=snippet',
+    key: `&key=${GOOGLE_API_KEY}`,
+    max: '&maxResults=5',
+  };
+
   // Custom function
-  async function searchResults(params) {
-    const { base, query, key, max } = params;
-    const req = `${base}&q=${query}${key}${max}`;
-    const response = await fetch(req)
+  async function searchResults(string) {
+    const { api, key, max } = params;
+    const query = string.replace(/\s+/g, '%20');
+    const req = `${api}&q=${query}${key}${max}`;
+    fetch(req)
       .then(res => res.json())
-      .then((data) => {
-        return data.items
-      })
-    setResults(response);
+      .then(({ items }) => {
+        setResults(items)
+      });
   }
 
   async function getSound(id) {
@@ -32,7 +39,6 @@ const SearchProvider = (props) => {
       duration: info.formats[0].approxDurationMs
     }
   }
-
 
   return (
     <SearchContext.Provider value={{ results, searchResults, getSound }}>

@@ -24,15 +24,14 @@ const styles = StyleSheet.create({
   title: {
     color: Colors.WHITE,
     fontSize: height > 720 ? 30 : 27,
-    marginLeft: 15,
+    marginLeft: 20,
     position: 'absolute',
     fontFamily: Poppins._600,
     top: '25%',
   },
   subtitle: {
     color: Colors.LIGHT,
-    fontSize: 19,
-    paddingLeft: 15,
+    fontSize: 20,
     fontFamily: Poppins._600,
     marginBottom: '3%',
     width: '100%',
@@ -45,10 +44,11 @@ const styles = StyleSheet.create({
   },
   playlists: {
     marginTop: '13%',
+    marginHorizontal: 20,
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   }
 })
 

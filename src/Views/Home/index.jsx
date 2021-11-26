@@ -56,9 +56,10 @@ function Home({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.artists}>
-          <Text style={styles.subtitle}>Top artists</Text>
+          <Text style={[{ marginLeft: 20 }, styles.subtitle]}>Top artists</Text>
           <FlatList
-            contentContainerStyle={{ alignSelf: 'flex-end' }}
+            style={{ marginLeft: 10}}
+            contentContainerStyle={{ alignSelf: 'flex-end', paddingRight: 10 }}
             data={data}
             renderItem={({ item }) => <CircleItem item={item} action={() => setArtist(item)} />}
             keyExtractor={(_, index) => index.toString()}

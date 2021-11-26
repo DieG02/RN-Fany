@@ -45,7 +45,6 @@ export default function Square({ item }) {
 const styles = StyleSheet.create({
   main: {
     width: 150,
-    marginHorizontal: 10,
   },
   content: {
     height: 50,
@@ -55,6 +54,6 @@ const styles = StyleSheet.create({
     color: '#AAA',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 10,
+    fontSize: 12,
   }
 })

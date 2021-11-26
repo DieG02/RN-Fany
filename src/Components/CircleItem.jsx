@@ -33,10 +33,10 @@ export default function Circle({ item, action }) {
 
 const styles = StyleSheet.create({
   main: {
-    height: 70,
-    width: 70,
-    marginRight: 15,
-    marginLeft: 15,
+    height: 75,
+    width: 75,
+    marginRight: 10,
+    marginLeft: 10,
   },
   container: {
     height: 70,

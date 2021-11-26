@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import MarqueeText from 'react-native-marquee'
+import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { State, usePlaybackState } from 'react-native-track-player'
@@ -17,6 +18,8 @@ export default function Player() {
 
   const { song } = useContext(SongContext);
   const { artwork, title, artist, duration } = song;
+
+  const navigation = useNavigation();
   const playbackState = usePlaybackState();
 
   let toggleIcon = 'play';
@@ -48,6 +51,7 @@ export default function Player() {
         style={styles.song}
         delayPressIn={10}
         activeOpacity={0.5}
+        onPress={() =>  navigation.navigate('Song')}
       >
         <Image
           source={{ uri: artwork }}

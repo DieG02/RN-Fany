@@ -4,10 +4,10 @@ import {
   Text,
   StyleSheet,
 } from 'react-native'
-import TrackPlayer, { useProgress } from 'react-native-track-player'
+import { useProgress } from 'react-native-track-player'
 import Slider from '@react-native-community/slider'
 
-import { seekTo } from './player.js'
+import { seekTo } from '../../context/controls'
 import { Colors, Poppins } from '../Stylers'
 
 

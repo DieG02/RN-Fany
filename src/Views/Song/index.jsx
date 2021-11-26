@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 import {
   View,
   Image,
@@ -12,8 +12,6 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 
 import {
-  addTrack,
-  setup,
   togglePlayback,
   skipToPrevious,
   skipToNext,
@@ -23,19 +21,16 @@ import Controls from './Controls'
 import SliderBar from './SliderBar'
 import styles from './styles'
 import { Colors } from '../Stylers'
+import { SongContext } from '../../context/SongContext'
 
 
-const colorsGradient = ['transparent', '#151515', '#000'],
-      locationsGradient = [0.6, 0.85, 0.95];
+function Song({ navigation }) {
 
-function Song({ navigation, route }) {
-  const { track } = route.params;
-  const { title, artist, artwork, duration } = track;
+  const { song } = useContext(SongContext)
+  const { title, artist, artwork, duration } = song;
 
-  useEffect(() => {
-    setup();
-    addTrack(track);
-  }, []);
+  const colorsGradient = ['transparent', '#151515', '#000'],
+     locationsGradient = [0.6, 0.85, 0.95];
 
   return (
     <View style={styles.body}>

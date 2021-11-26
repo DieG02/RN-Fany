@@ -1,8 +1,8 @@
 [
   {
     "top": 1,
-    "artist": "Ariana Grande",
-    "image": "https://lastfm.freetls.fastly.net/i/u/770x0/63316bc221a075f4092e93e0bc393b6c.jpg#63316bc221a075f4092e93e0bc393b6c",
+    "nickName": "Ariana Grande",
+    "src": "https://lastfm.freetls.fastly.net/i/u/770x0/63316bc221a075f4092e93e0bc393b6c.jpg#63316bc221a075f4092e93e0bc393b6c",
     "items": [
       {
         "kind": "youtube#searchResult",
@@ -211,11 +211,11 @@
     ]
   },
 
-  
+
   {
     "top": 2,
-    "artist": "The Weeknd",
-    "image": "https://lastfm.freetls.fastly.net/i/u/770x0/1744ee11ac012ab6e54f9b2b613a5531.jpg#1744ee11ac012ab6e54f9b2b613a5531",
+    "nickName": "The Weeknd",
+    "src": "https://lastfm.freetls.fastly.net/i/u/770x0/1744ee11ac012ab6e54f9b2b613a5531.jpg#1744ee11ac012ab6e54f9b2b613a5531",
     "items": [
       {
         "kind": "youtube#searchResult",
@@ -427,8 +427,8 @@
 
   {
     "top": 3,
-    "artist": "Dua Lipa",
-    "image": "https://lastfm.freetls.fastly.net/i/u/770x0/b8ae797c629156acea1c872afcf58635.jpg#b8ae797c629156acea1c872afcf58635",
+    "nickName": "Dua Lipa",
+    "src": "https://lastfm.freetls.fastly.net/i/u/770x0/b8ae797c629156acea1c872afcf58635.jpg#b8ae797c629156acea1c872afcf58635",
     "items": [
       {
         "kind": "youtube#searchResult",
@@ -606,8 +606,8 @@
 
   {
     "top": 9,
-    "artist": "Halsey",
-    "image": "https://lastfm.freetls.fastly.net/i/u/770x0/546e31a2dfd6e9cca73363562b668b27.jpg#546e31a2dfd6e9cca73363562b668b27",
+    "nickName": "Halsey",
+    "src": "https://lastfm.freetls.fastly.net/i/u/770x0/546e31a2dfd6e9cca73363562b668b27.jpg#546e31a2dfd6e9cca73363562b668b27",
     "items": [
       {
         "kind": "youtube#searchResult",
@@ -819,8 +819,8 @@
 
   {
     "top": 10,
-    "artist": "Juice WRLD",
-    "image": "https://lastfm.freetls.fastly.net/i/u/770x0/805094511453cffcf3143ca3b07ba4a0.jpg#805094511453cffcf3143ca3b07ba4a0",
+    "nickName": "Juice WRLD",
+    "src": "https://lastfm.freetls.fastly.net/i/u/770x0/805094511453cffcf3143ca3b07ba4a0.jpg#805094511453cffcf3143ca3b07ba4a0",
     "items": [
       {
         "kind": "youtube#searchResult",

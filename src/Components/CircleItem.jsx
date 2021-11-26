@@ -7,7 +7,8 @@ import {
 } from 'react-native'
 
 
-export default function Circle({ src }) {
+export default function Circle({ item, action }) {
+  const { src } = item;
   
   return (
     <View style={styles.main}>
@@ -20,7 +21,7 @@ export default function Circle({ src }) {
           style={styles.image}
           delayPressIn={20}
           underlayColor='rgba(75, 75, 75, 0.5)'
-          onPress={() => console.log("To Do")}
+          onPress={action}
         >
           <View />
         </TouchableHighlight>

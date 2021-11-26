@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   View, 
   Text,
@@ -9,6 +9,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles'
+import data from './data.json';
 import CircleItem from '../../components/CircleItem'
 import SquareItem from '../../components/SquareItem'
 import SvgHome from '../../assets/svg/Home'
@@ -28,7 +29,7 @@ function Home({ navigation }) {
   }
   
   const { song } = useContext(SongContext);
-
+  const [artist, setArtist] = useState(data[0]); 
 
   return (
     <View style={{ flex: 1 }}>
@@ -53,17 +54,31 @@ function Home({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.artists}>
-          <Text style={styles.subtitle}>Top 10 artists</Text>
+          <Text style={styles.subtitle}>Top artists</Text>
           <FlatList
             contentContainerStyle={{ alignSelf: 'flex-end' }}
-            data={artists}
-            renderItem={({ item }) => <CircleItem src={item} />}
+            data={data}
+            renderItem={({ item }) => <CircleItem item={item} action={() => setArtist(item)} />}
             keyExtractor={(_, index) => index.toString()}
             horizontal
             showsHorizontalScrollIndicator={false}
           />
         </View>
 
+        <View style={styles.playlists}>
+          <Text style={styles.subtitle}>{artist.nickName}</Text>
+          <FlatList
+            contentContainerStyle={{ 
+              alignSelf: 'flex-end', 
+              paddingHorizontal: 5
+            }}
+            data={artists}
+            renderItem={({ item }) => <SquareItem src={item} />}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
         <View style={styles.playlists}>
           <Text style={styles.subtitle}>My playlists</Text>
           <FlatList

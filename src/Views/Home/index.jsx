@@ -19,7 +19,6 @@ import { SongContext } from '../../context/SongContext'
 const colorsGradient = ['#404040', '#101010', '#000'];
 const locationsGradient = [0, 0.45, 1];
 const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
-const artists = [aux, aux, aux, aux, aux, aux, aux, aux, aux, aux];
 
 
 function Home({ navigation }) {
@@ -27,7 +26,6 @@ function Home({ navigation }) {
   const FocusAwareStatusBar = (props) => {
     return navigation.isFocused && <StatusBar {...props} />
   }
-  
   const { song } = useContext(SongContext);
   const [artist, setArtist] = useState(data[0]); 
 
@@ -45,7 +43,11 @@ function Home({ navigation }) {
       />
 
       <View style={styles.header}>
-        <SvgHome height={120} width={275} style={{ right: '10%', top: '-15%' }} />
+        <SvgHome 
+          height={120} 
+          width={275} 
+          style={{ right: '10%', top: '-15%' }} 
+        />
         <Text style={styles.title}>Home</Text>
       </View>
       
@@ -67,36 +69,11 @@ function Home({ navigation }) {
 
         <View style={styles.playlists}>
           <Text style={styles.subtitle}>{artist.nickName}</Text>
-          <FlatList
-            contentContainerStyle={{ 
-              alignSelf: 'flex-end', 
-              paddingHorizontal: 5
-            }}
-            data={artists}
-            renderItem={({ item }) => <SquareItem src={item} />}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-        <View style={styles.playlists}>
-          <Text style={styles.subtitle}>My playlists</Text>
-          <FlatList
-            contentContainerStyle={{ 
-              alignSelf: 'flex-end', 
-              paddingHorizontal: 5
-            }}
-            data={artists}
-            renderItem={({ item }) => <SquareItem src={item} />}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
+          {artist.items.map((item) => <SquareItem item={item} />)}
         </View>
       </ScrollView>
     </View>
   )
 }
-
 
 export default Home

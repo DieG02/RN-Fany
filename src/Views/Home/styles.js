@@ -6,7 +6,6 @@ const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red"
   },
   linearGradient: {
     position: 'absolute',
@@ -36,6 +35,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     fontFamily: Poppins._600,
     marginBottom: '3%',
+    width: '100%',
   },
   artists: {
     marginTop: '30%',
@@ -45,7 +45,10 @@ const styles = StyleSheet.create({
   },
   playlists: {
     marginTop: '13%',
-    marginBottom: 50,
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   }
 })
 

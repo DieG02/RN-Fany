@@ -28,7 +28,7 @@ function Home({ navigation }) {
   }
   const { song } = useContext(SongContext);
   const [artist, setArtist] = useState(data[0]); 
-
+  
   return (
     <View style={{ flex: 1 }}>
       <FocusAwareStatusBar

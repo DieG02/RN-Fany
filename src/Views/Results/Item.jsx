@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { Colors, Poppins } from '../Stylers'
 import { SongContext } from '../../context/SongContext'
@@ -66,9 +65,7 @@ function Item(props) {
         style={styles.data}
         delayPressIn={20}
         activeOpacity={0.5}
-        onPress={() => {
-          setSong(track)
-        }}
+        onPress={() => setSong(track)}
       >
         <Image
           source={{ uri: image }}

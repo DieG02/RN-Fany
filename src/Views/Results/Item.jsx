@@ -45,19 +45,7 @@ function Item(props) {
   const { setSong } = useContext(SongContext);
   const { getSound } = useContext(SearchContext);
 
-  const animatedValue = React.useRef(new Animated.Value(0)).current;
-
-  const timingAnimation = () => {
-    animatedValue.setValue(0); //retornar a 0
-    return Animated.loop(
-      Animated.timing(animatedValue, {
-        toValue: 360,
-        duration: 1500,
-        easing: Easing.linear
-      }),
-      { iterations: -1 }
-    );
-  }
+  const animatedValue = useRef(new Animated.Value(0)).current;
 
   const rotationStyle = {
     transform: [{
@@ -85,10 +73,17 @@ function Item(props) {
   }, [videoId])
 
   useEffect(() => {
-    track.duration > 0 
-      ? timingAnimation().start()
-      : timingAnimation().stop();
-  }, [track.duration])
+    animatedValue.setValue(0); //retornar a 0
+    return Animated.loop(
+      Animated.timing(animatedValue, {
+        toValue: 360,
+        duration: 1500,
+        useNativeDriver: true,
+        easing: Easing.linear
+      }),
+      { iterations: -1 }
+    ).start()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -106,7 +101,7 @@ function Item(props) {
               style={styles.image}
             />
           : <Animated.View style={[ styles.loaderIcon, rotationStyle ]}>
-              <Loader width='30' height='30' />
+              <Loader width='25' height='25' />
             </Animated.View>
         }
         </View> 

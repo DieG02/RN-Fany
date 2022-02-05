@@ -46,15 +46,17 @@ function Item(props) {
   const { getSound } = useContext(SearchContext);
 
   const animatedValue = React.useRef(new Animated.Value(0)).current;
-  const timingAnimation = (easing) => {
-    animatedValue.setValue(0); //retornar a 0
 
-    return Animated.loop(Animated.timing(animatedValue, {
-      toValue: 360,
-      duration: 1500,
-      easing: Easing.linear
-    }),
-      { iterations: -1 });
+  const timingAnimation = () => {
+    animatedValue.setValue(0); //retornar a 0
+    return Animated.loop(
+      Animated.timing(animatedValue, {
+        toValue: 360,
+        duration: 1500,
+        easing: Easing.linear
+      }),
+      { iterations: -1 }
+    );
   }
 
   const rotationStyle = {
@@ -82,6 +84,12 @@ function Item(props) {
     getResources();
   }, [videoId])
 
+  useEffect(() => {
+    track.duration > 0 
+      ? timingAnimation().start()
+      : timingAnimation().stop();
+  }, [track.duration])
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -98,7 +106,7 @@ function Item(props) {
               style={styles.image}
             />
           : <Animated.View style={[ styles.loaderIcon, rotationStyle ]}>
-              <Loader width='35' height='35' />
+              <Loader width='30' height='30' />
             </Animated.View>
         }
         </View> 

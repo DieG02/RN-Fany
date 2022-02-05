@@ -1,15 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
   StyleSheet,
+  Animated, 
+  Easing
 } from 'react-native'
 
 import { Colors, Poppins } from '../Stylers'
 import { SongContext } from '../../context/SongContext'
 import { SearchContext } from '../../context/SearchContext'
+import Loader from '../../assets/svg/Loader'
 
 
 const formatTime = (value) => {
@@ -42,6 +45,27 @@ function Item(props) {
   const { setSong } = useContext(SongContext);
   const { getSound } = useContext(SearchContext);
 
+  const animatedValue = React.useRef(new Animated.Value(0)).current;
+  const timingAnimation = (easing) => {
+    animatedValue.setValue(0); //retornar a 0
+
+    return Animated.loop(Animated.timing(animatedValue, {
+      toValue: 360,
+      duration: 1500,
+      easing: Easing.linear
+    }),
+      { iterations: -1 });
+  }
+
+  const rotationStyle = {
+    transform: [{
+      rotate: animatedValue.interpolate({
+        inputRange: [0, 360],
+        outputRange: ['0deg', '360deg']
+      })
+    }],
+  }
+
   useEffect(() => {
     async function getResources() {
       setTrack(newTrack)  // reset state
@@ -67,13 +91,22 @@ function Item(props) {
         activeOpacity={0.5}
         onPress={() => setSong(track)}
       >
-        <Image
-          source={{ uri: image }}
-          style={styles.image}
-        />
+        <View style={styles.loader}>
+          {track.duration > 0 
+          ? <Image
+              source={{ uri: image }}
+              style={styles.image}
+            />
+          : <Animated.View style={[ styles.loaderIcon, rotationStyle ]}>
+              <Loader width='35' height='35' />
+            </Animated.View>
+        }
+        </View> 
         <View style={styles.textContainer}>
           <Text style={[styles.title, { color: Colors.WHITE }]}>{shortName}</Text>
-          <Text style={styles.content}>{channelTitle}  •  {track.duration > 0 ? formatTime(track.duration) : 'Calculando' }</Text>
+          <Text style={styles.content}>
+            {channelTitle}  •  {track.duration > 0 ? formatTime(track.duration) : 'Calculando' }
+            </Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -95,13 +128,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-  image: {
+  loader: {
+    zIndex: 5,
+    position: 'relative',
     width: 60,
     height: 60,
-    marginRight: 10,
-    resizeMode: 'cover'
+  },
+  loaderIcon: {
+    position: 'absolute',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    zIndex: -5,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   textContainer: {
+    marginLeft: 10,
     width: '80%', 
     height: '100%', 
     justifyContent: 'space-around'

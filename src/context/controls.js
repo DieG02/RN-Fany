@@ -40,10 +40,10 @@ export async function setup() {
 
 
 export async function addTrack (track) {
-  TrackPlayer.reset();
-  TrackPlayer.add(track);
+  await TrackPlayer.reset();
+  await TrackPlayer.add(track);
   await TrackPlayer.setRepeatMode(RepeatMode.Track)
-  TrackPlayer.play();
+  await TrackPlayer.play();
 }
 
 export async function togglePlayback(state) {

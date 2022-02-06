@@ -33,9 +33,9 @@ const newTrack = {
 
 
 function Item(props) {
-
-  //         Artist        Image     Name     Id
-  const { channelTitle, thumbnails, title, videoId } = props;
+  // console.log(props);
+  //         Artist        Image     Name     id     playlist
+  const { channelTitle, thumbnails, title, videoId, playlistId } = props;
 
   const image = thumbnails.high.url || thumbnails.medium.url || thumbnails.default.url;
   const name = title.replace(/&amp;/g, "&").replace(/&quot;/g, "\"").replace(/&#39;/g, "'");

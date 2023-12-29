@@ -5,7 +5,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import { useProgress } from 'react-native-track-player'
-import Slider from '@react-native-community/slider'
+// import Slider from '@react-native-community/slider'
 
 import { seekTo } from '../../context/controls'
 import { Colors, Poppins } from '../Stylers'
@@ -23,7 +23,7 @@ function SliderBar () {
 
   return (
     <View style={styles.container}>
-      <Slider
+      {/* <Slider
         step={0.05}
         value={position}
         minimumValue={0}
@@ -35,7 +35,7 @@ function SliderBar () {
         tapToSeek={true}
         minimumTrackTintColor={Colors.WHITE}
         maximumTrackTintColor={Colors.GREY_W}
-      />
+      /> */}
       <View style={styles.duration}>
         <Text style={styles.text}>{formatTime(position)}</Text>
         <Text style={styles.text}>{formatTime(duration)}</Text>

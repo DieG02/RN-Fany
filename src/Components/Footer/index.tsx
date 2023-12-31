@@ -7,7 +7,7 @@ import { Colors } from '../Stylers'
 import { SongContext } from '../../context/SongContext'
 
 
-function Footer(props) {
+function Footer(props: any) {
   
   const { state, descriptors, navigation, title } = props;
   const tabBarOptions = { state, descriptors, navigation, title };

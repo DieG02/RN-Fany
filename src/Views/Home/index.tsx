@@ -10,8 +10,8 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import styles from './styles'
 import data from './data.json';
-import CircleItem from '../../components/CircleItem'
-import SquareItem from '../../components/SquareItem'
+import CircleItem from '../../Components/CircleItem'
+import SquareItem from '../../Components/SquareItem'
 import SvgHome from '../../assets/svg/Home'
 import { SongContext } from '../../context/SongContext'
 
@@ -21,9 +21,9 @@ const locationsGradient = [0, 0.45, 1];
 const aux = 'https://st2.depositphotos.com/5142301/10221/v/600/depositphotos_102218254-stock-illustration-x-letter-colorful-logo.jpg';
 
 
-function Home({ navigation }) {
+function Home({ navigation }: any) {
 
-  const FocusAwareStatusBar = (props) => {
+  const FocusAwareStatusBar = (props: any) => {
     return navigation.isFocused && <StatusBar {...props} />
   }
   const { song } = useContext(SongContext);

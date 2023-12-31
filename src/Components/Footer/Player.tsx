@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { State, usePlaybackState } from 'react-native-track-player'
-import { setup, addTrack, togglePlayback } from '../../context/controls.js'
+import { setup, addTrack, togglePlayback } from '../../context/controls'
 
 import { SongContext } from '../../context/SongContext'
 

@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 
 
-export default function Circle({ item, action }) {
+export default function Circle({ item, action }: any) {
   const { src } = item;
   
   return (

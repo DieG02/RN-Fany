@@ -5,11 +5,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import SearchProvider from './src/context/SearchContext'
 import SongProvider from './src/context/SongContext'
 
-import Home from './src/views/Home'
-import Search from './src/views/Search'
-import Results from './src/views/Results'
-import Song from './src/views/Song'
-import Footer from './src/components/Footer'
+import Home from './src/Views/Home'
+import Search from './src/Views/Search'
+import Results from './src/Views/Results'
+import Song from './src/Views/Song'
+import Footer from './src/Components/Footer'
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,12 +34,12 @@ function MyTabBar() {
       tabBar={(props) => <Footer {...props} />}
       screenOptions={{
         headerShown: false,
-        keyboardHidesTabBar: true,
+        // keyboardHidesTabBar: true,
         lazy: false,
-        transitionConfig: () => ({
-          containerStyleLight: {},
-          containerStyleDark: {},
-        })
+        // transitionConfig: () => ({
+        //   containerStyleLight: {},
+        //   containerStyleDark: {},
+        // })
       }}
     >
       <Tab.Screen name='Home' component={Home} />

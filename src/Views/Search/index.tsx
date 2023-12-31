@@ -15,7 +15,7 @@ const colorsGradient = ['#404040', '#343434', '#111111', '#000000'];
 const locationsGradient = [0.05, 0.15, 0.3, 0.5];
 
 
-function Search ({ navigation }) {
+function Search ({ navigation }: any) {
 
   const FocusAwareStatusBar = (props) => {
     const isFocused = navigation.isFocused();

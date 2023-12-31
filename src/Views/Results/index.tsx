@@ -13,7 +13,7 @@ import styles from './styles'
 import { SearchContext } from '../../context/SearchContext'
 
 
-function Results({ navigation }) {
+function Results({ navigation }: any) {
   const { results } = useContext(SearchContext);
 
   const FocusAwareStatusBar = (props) => {

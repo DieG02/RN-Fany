@@ -15,7 +15,7 @@ import {
   togglePlayback,
   skipToPrevious,
   skipToNext,
-} from '../../context/controls.js'
+} from '../../context/controls'
 import Data from './Data'
 import Controls from './Controls'
 import SliderBar from './SliderBar'
@@ -24,7 +24,7 @@ import { Colors } from '../Stylers'
 import { SongContext } from '../../context/SongContext'
 
 
-function Song({ navigation }) {
+function Song({ navigation }: any) {
 
   const { song } = useContext(SongContext)
   const { title, artist, artwork, duration } = song;
